@@ -1,0 +1,124 @@
+---
+import '@comfyorg/litegraph/style.css';
+import '../styles/app.css';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>H3 工作台 — MiniMax-H3 · stable-diffusion.cpp</title>
+</head>
+<body>
+<div id="app">
+
+  <!-- ------------------------------------------------------------ topbar -->
+  <div class="topbar">
+    <div class="logo"><span class="dot"></span> H3 工作台</div>
+    <div class="menu-item">工作流</div>
+    <div class="menu-item">编辑</div>
+    <div class="menu-item">视图</div>
+    <div class="menu-item">帮助</div>
+    <div class="spacer"></div>
+    <div class="center-title" id="workflow-name">—</div>
+    <div class="spacer"></div>
+    <div class="status-pill off" id="sd-status"><span class="led"></span><span class="label">连接中…</span></div>
+    <button class="btn sm" id="btn-sd-toggle">启动引擎</button>
+    <button class="btn sm" id="btn-queue">队列</button>
+    <button class="btn primary" id="btn-run">▶ 运行</button>
+  </div>
+
+  <!-- -------------------------------------------------------------- body -->
+  <div class="body">
+    <div class="rail">
+      <button class="rail-btn active" data-panel="templates" title="工作流">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      </button>
+      <button class="rail-btn" data-panel="queue" title="队列">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+      </button>
+      <button class="rail-btn" data-panel="models" title="模型">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>
+      </button>
+      <button class="rail-btn" id="btn-images" title="输入图像">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-6 6"/></svg>
+      </button>
+    </div>
+
+    <div class="canvas-wrap">
+      <canvas id="graph-canvas"></canvas>
+
+      <div class="canvas-overlay">
+        <button class="btn sm" id="btn-zoom-out">−</button>
+        <span class="zoom-label" id="zoom-label">100%</span>
+        <button class="btn sm" id="btn-zoom-in">+</button>
+        <button class="btn sm" id="btn-fit">适应窗口</button>
+        <span class="hint">Ctrl+Enter 运行</span>
+      </div>
+
+      <!-- output preview -->
+      <div class="preview-panel hidden" id="preview-panel">
+        <div class="preview-head">
+          <span class="pt" id="preview-title">输出</span>
+          <button class="btn sm" id="btn-close-preview">✕</button>
+        </div>
+        <div class="preview-body" id="preview-body">
+          <div class="placeholder">暂无媒体</div>
+        </div>
+        <div class="preview-foot" id="preview-meta"></div>
+      </div>
+    </div>
+
+    <!-- side panel -->
+    <div class="side-panel" id="side-panel">
+      <div class="panel-tabs">
+        <div class="panel-tab active" data-panel="templates">工作流</div>
+        <div class="panel-tab" data-panel="queue">队列</div>
+        <div class="panel-tab" data-panel="models">引擎</div>
+      </div>
+
+      <div class="panel-body">
+        <div class="panel-view" data-view="templates">
+          <div class="section-title">MiniMax-H3 模板</div>
+          <div id="tpl-list"></div>
+          <div class="section-title">节点检查器</div>
+          <div id="inspector"><div class="hint">选择一个节点以查看详情。</div></div>
+        </div>
+
+        <div class="panel-view hidden" data-view="queue">
+          <div class="section-title">进行中</div>
+          <div id="active-job"><div class="hint">当前没有任务。</div></div>
+          <div class="section-title">历史记录 <button class="btn sm" id="btn-refresh-jobs" style="float:right;margin-top:-4px">刷新</button></div>
+          <div id="job-list"></div>
+        </div>
+
+        <div class="panel-view hidden" data-view="models">
+          <div class="section-title">stable-diffusion.cpp 引擎</div>
+          <div id="sd-detail"><div class="hint">未运行</div></div>
+          <div class="section-title">模型库</div>
+          <div id="models-view"><div class="hint">加载中…</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal-backdrop hidden" id="modal-backdrop">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-title">对话框</h3>
+      <button class="btn sm" id="modal-close">✕</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<div class="toast hidden" id="toast"></div>
+
+<script>
+  import '../lib/app.js';
+</script>
+</body>
+</html>

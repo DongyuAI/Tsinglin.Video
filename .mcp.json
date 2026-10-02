@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "h3-studio": {
+      "command": "${H3_PYTHON:-ComfyUI_windows_portable/python_embeded/python.exe}",
+      "args": ["${H3_REPO:-.}/h3-studio/backend/mcp_server.py"],
+      "env": {
+        "H3_API": "http://127.0.0.1:8199"
+      }
+    }
+  }
+}

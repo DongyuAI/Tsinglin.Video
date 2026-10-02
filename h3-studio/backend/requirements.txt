@@ -1,0 +1,7 @@
+fastapi
+uvicorn[standard]
+httpx
+python-multipart
+# MCP server (backend/mcp_server.py). Installed project-locally into ./pylibs:
+#   python_embeded/python.exe -m pip install --target pylibs "mcp>=2.0"
+mcp>=2.0

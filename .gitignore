@@ -1,0 +1,30 @@
+# --------------------------------------------------------------- model weights
+# Multi-GB engine weights (DiT / text encoder / VAEs). They are environment,
+# not source: GitHub rejects any single file over 100 MB, and these run to 17 GB.
+*.gguf
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+
+# ------------------------------------------------------------ bundled runtimes
+# Portable ComfyUI and a prebuilt stable-diffusion.cpp tree — together ~6 GB of
+# DLLs, exes and embedded Python. Both are downloaded, not written here.
+ComfyUI_windows_portable/
+stable-diffusion.cpp/
+
+# ------------------------------------------------------------ build artefacts
+*.zip
+*.7z
+
+# ---------------------------------------------------------------------- editor
+.idea/
+.msc
+.vscode/
+
+# ---------------------------------------------------------------------- python
+__pycache__/
+*.pyc
+
+# ------------------------------------------------------------------------ node
+node_modules/

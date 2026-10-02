@@ -1,0 +1,160 @@
+{
+  "titles": {
+    "LoadImage": "加载图像",
+    "SaveVideo": "保存视频",
+    "MinimaxHailuo03FirstLastFrameNode": "MiniMax H3 首帧-末帧生成视频",
+    "VAELoader": "加载VAE",
+    "VAEDecodeAudio": "VAE解码（音频）",
+    "VAEDecode": "VAE解码",
+    "KSamplerSelect": "K采样器选择",
+    "BasicScheduler": "基本调度器",
+    "SamplerCustomAdvanced": "自定义采样器（高级）",
+    "BasicGuider": "基本引导器",
+    "UNETLoader": "UNet加载器",
+    "CLIPLoader": "加载CLIP",
+    "RandomNoise": "随机噪波",
+    "CreateVideo": "创建视频",
+    "ComfyMathExpression": "数学表达式",
+    "MiniMaxH3ReferenceToVideo": "MiniMax H3 参考转视频",
+    "LoraLoaderModelOnly": "LoRA加载器（仅模型）",
+    "ResolutionSelector": "分辨率选择器",
+    "ImageScaleToTotalPixels": "缩放图像（像素）",
+    "GetImageSize": "获取图像尺寸"
+  },
+  "widgets": {
+    "LoadImage": {
+      "image": "图像",
+      "upload": "选择文件上传"
+    },
+    "SaveVideo": {
+      "filename_prefix": "文件名前缀",
+      "format": "格式",
+      "format.codec": "编解码器",
+      "codec": "编码器"
+    },
+    "MinimaxHailuo03FirstLastFrameNode": {
+      "model": "model",
+      "model.prompt": "prompt",
+      "model.resolution": "resolution",
+      "model.duration": "duration",
+      "seed": "seed",
+      "control_after_generate": "生成后控制",
+      "watermark": "watermark"
+    },
+    "ResolutionSelector": {
+      "aspect_ratio": "宽高比",
+      "megapixels": "百万像素",
+      "multiple": "倍数",
+      "preview": "preview"
+    },
+    "MarkdownNote": {
+      "text": "text"
+    },
+    "VAELoader": {
+      "vae_name": "vae名称"
+    },
+    "VAEDecodeAudio": {},
+    "VAEDecode": {},
+    "KSamplerSelect": {
+      "sampler_name": "采样器名称"
+    },
+    "BasicScheduler": {
+      "scheduler": "调度器",
+      "steps": "步数",
+      "denoise": "降噪"
+    },
+    "SamplerCustomAdvanced": {},
+    "BasicGuider": {},
+    "UNETLoader": {
+      "unet_name": "UNet名称",
+      "weight_dtype": "数据类型"
+    },
+    "CLIPLoader": {
+      "clip_name": "CLIP名称",
+      "type": "类型",
+      "device": "设备"
+    },
+    "RandomNoise": {
+      "noise_seed": "噪波随机种",
+      "control_after_generate": "生成后控制"
+    },
+    "CreateVideo": {
+      "fps": "帧率",
+      "bit_depth": "bit_depth",
+      "color_space": "color_space",
+      "codec": "codec"
+    },
+    "ComfyMathExpression": {
+      "expression": "表达式"
+    },
+    "PrimitiveFloat": {
+      "value": "值"
+    },
+    "MiniMaxH3ReferenceToVideo": {
+      "prompt": "提示词",
+      "width": "宽度",
+      "height": "高度",
+      "length": "长度",
+      "ref_image_size": "参考图像尺寸"
+    },
+    "PrimitiveStringMultiline": {
+      "value": "值"
+    },
+    "ComfySwitchNode": {
+      "switch": "切换"
+    },
+    "PrimitiveInt": {
+      "value": "数值",
+      "fixed": "生成后控制"
+    },
+    "LoraLoaderModelOnly": {
+      "lora_name": "LoRA名称",
+      "strength_model": "模型强度"
+    },
+    "PrimitiveBoolean": {
+      "value": "值"
+    },
+    "ImageScaleToTotalPixels": {
+      "upscale_method": "缩放算法",
+      "megapixels": "像素数量",
+      "resolution_steps": "分辨率步数"
+    },
+    "GetImageSize": {}
+  },
+  "inputs": {
+    "LoadImage": {},
+    "SaveVideo": {},
+    "MinimaxHailuo03FirstLastFrameNode": {},
+    "ResolutionSelector": {},
+    "MarkdownNote": {},
+    "VAELoader": {},
+    "VAEDecodeAudio": {},
+    "VAEDecode": {},
+    "KSamplerSelect": {},
+    "BasicScheduler": {},
+    "SamplerCustomAdvanced": {},
+    "BasicGuider": {},
+    "UNETLoader": {},
+    "CLIPLoader": {},
+    "RandomNoise": {},
+    "CreateVideo": {},
+    "ComfyMathExpression": {
+      "values.a": "a"
+    },
+    "PrimitiveFloat": {},
+    "MiniMaxH3ReferenceToVideo": {
+      "ref_images.ref_image_0": "ref_image_0",
+      "ref_videos.ref_video_0": "ref_video_0",
+      "ref_video_audios.ref_video_audio_0": "ref_video_audio_0",
+      "ref_audios.ref_audio_0": "ref_audio_0"
+    },
+    "PrimitiveStringMultiline": {},
+    "ComfySwitchNode": {},
+    "PrimitiveInt": {},
+    "LoraLoaderModelOnly": {},
+    "PrimitiveBoolean": {},
+    "ImageScaleToTotalPixels": {},
+    "GetImageSize": {}
+  },
+  "generatedAt": "2026-10-01T07:37:00.511Z"
+}

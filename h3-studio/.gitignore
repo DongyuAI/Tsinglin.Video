@@ -1,0 +1,12 @@
+node_modules/
+dist/
+.astro/
+pylibs/
+outputs/
+sd-server.log
+.chrome-prof/
+shot*.png
+prompt-editor.png
+tools/qa/
+__pycache__/
+*.pyc

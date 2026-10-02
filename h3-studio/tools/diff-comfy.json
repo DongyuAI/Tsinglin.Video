@@ -1,0 +1,4490 @@
+{
+ "t2v": {
+  "comfy": [
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     -660,
+     4840
+    ],
+    "size": [
+     1070,
+     358
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "文件名前缀",
+      "value": "video/MiniMax_H3",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "格式",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "编解码器",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "编码器",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "视频",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ResolutionSelector",
+    "title": "分辨率选择器",
+    "pos": [
+     -1550,
+     5220
+    ],
+    "size": [
+     270,
+     170
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "aspect_ratio",
+      "label": "宽高比",
+      "value": "16:9 (Widescreen)",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "百万像素",
+      "value": 0.4,
+      "disabled": false
+     },
+     {
+      "name": "multiple",
+      "label": "倍数",
+      "value": 32,
+      "disabled": false
+     },
+     {
+      "name": "preview",
+      "label": "preview",
+      "value": null,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "宽度",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "高度",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: MiniMax H3",
+    "pos": [
+     -2080,
+     4840
+    ],
+    "size": [
+     450,
+     740
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## MiniMax H3\n\n[MiniMax H3](https://www.minimax.io/blog/minimax-h3) is MiniMax's general-purpose, omni-modal generation model. It jointly understands text, image, video, and audio, and generates video with **native stereo audio**: voice, sound effects, and music are modeled jointly in a single forward pass, not layered on afterward. Output is up to 2K resolution, 24fps, and up to about 15 seconds.\n\n## ComfyUI links\n- [ComfyUI#15224](https://github.com/Comfy-Org/ComfyUI/pull/15224)\n- [🤗 Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n\n## About this workflow\n\n**Key inputs**\n\n- **prompt**: describe the shots, camera moves, and the accompanying audio (dialogue, SFX, music) in one block\n- **width / height**: set via Resolution Selector. H3's native canvas is a 768px short edge, capped at 768x1344 pixels, rounded to a multiple of 32\n- **duration (seconds)**: converted to a valid frame `length` by the Math Expression node, snapping up to the model's 17-frame-per-block (17k+5) grid at 24fps\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Model Links",
+    "pos": [
+     -2550,
+     4840
+    ],
+    "size": [
+     440,
+     824
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links\n\n- [Hugging Face:Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- [ModelScope:Comfy-Org/MiniMax-H3](https://modelscope.cn/models/Comfy-Org/MiniMax-H3)\n\n**vae**\n\n- [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors)\n- [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors)\n\n**diffusion_models**\n\n- [minimax_h3_fl2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors)\n\n**loras**\n\n- 8 steps:  [minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors](https://huggingface.co/lightx2v/Minimax-h3-Turbo/resolve/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors)\n-  4 steps: [minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/loras/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors)\n\n**embeddings**\n\n- [10 style embeddings](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/embeddings) (`minimaxh3_*.safetensors`), for example `minimaxh3_art_is_explosion`\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_fl2va_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n│   ├── 📂 loras/\n│   │   └── minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors\n│   └── 📂 embeddings/\n│       └── minimaxh3_art_is_explosion.safetensors\n```\n\n## Using Prompt Embeddings\n\nPrompt embeddings (supported since [ComfyUI#15697](https://github.com/Comfy-Org/ComfyUI/pull/15697)) add reusable style tokens to your prompt. Download one or more embeddings from the folder above into `ComfyUI/models/embeddings/`, then reference one in the prompt text with the `embedding:` prefix and the filename without its extension, for example:\n\n`embedding:minimaxh3_art_is_explosion`\n\nUsing an embedding is optional and the template runs fine without one.\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Size Settings Reference",
+    "pos": [
+     -1570,
+     5460
+    ],
+    "size": [
+     310,
+     390
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "| megapixels | Aspect | Output (multiple=32) |\n|---|---|---|\n| 0.2 | 16:9 | 608 x 352 |\n| 0.3 | 16:9 | 736 x 416 |\n| 0.4 | 16:9 | 864 x 480 |\n| 0.5 | 16:9 | 960 x 544 |\n| 0.6 | 16:9 | 1056 x 608 |\n| 0.7 | 16:9 | 1152 x 640 |\n| 0.8 | 16:9 | 1216 x 672 |\n| 0.9 | 16:9 | 1280 x 736 |\n| 0.98 | 16:9 | 1344 x 768 (official 768p) |\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "79dd8a95-ce9d-4c14-b264-2162e8bec5ce",
+    "title": "Image to Video (MiniMax H3)",
+    "pos": [
+     -1180,
+     4840
+    ],
+    "size": [
+     480,
+     630
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "prompt",
+      "label": "prompt",
+      "value": "Realistic live-action cinematic look, action movie trailer: practical film photography style, a post-rain dusk metropolis, anamorphic lens, shallow depth of field, film grain, city volumetric fog, flying-car traffic between the towers, restrained grading for a premium feel, powerful natural movement.\n\nScene overview: at dusk on a cluster of skyscrapers, the protagonist is being chased, sprinting and leaping across rooftops, jumping from one building's roof to the next with pursuers closing in behind. This is the escape sequence of an action movie trailer: every leap is life-or-death, thrilling and fluid.\n\nStoryboard (each shot a separate scene, rapid cuts, all landing on the musical beats):\n[0s-1.5s] Shot 1: high side angle: the protagonist sprinting at the roof edge, pursuers appearing in the rooftop doorway behind him, wind catching his coat.\n[1s-2.5s] Shot 2: the protagonist leaps across the gap between buildings, body stretching mid-air, towers and flying-car light trails behind him, a slight slow-motion feel.\n[2.5s-4s] Shot 3: he lands, rolls and rises, low-angle shot, tower shadows and fog behind him, he keeps running.\n[4s-5s] Shot 4: freeze: the instant he hits the edge of the next roof and launches into the jump, silhouette, holding.\n\nCamera: each shot its own angle, cuts clean and hard, no dissolves, a slight frame jitter on the jumps.\n\nAudio: wind, rapid footsteps, city ambience, low score underneath, an accent hit on each leap, the score bursting at 4s, closing the last 1s.\n\nNo text, subtitles, logos or watermarks of any kind, no animation or cartoon rendering, no overly-CG look, keep the live-action texture.",
+      "disabled": false
+     },
+     {
+      "name": "width",
+      "label": "width",
+      "value": 1344,
+      "disabled": false
+     },
+     {
+      "name": "height",
+      "label": "height",
+      "value": 768,
+      "disabled": false
+     },
+     {
+      "name": "value_1",
+      "label": "duration",
+      "value": 5,
+      "disabled": false
+     },
+     {
+      "name": "noise_seed",
+      "label": "noise_seed",
+      "value": 757358688076805,
+      "disabled": false
+     },
+     {
+      "name": "unet_name",
+      "label": "unet_name",
+      "value": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "clip_name",
+      "label": "clip_name",
+      "value": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name",
+      "label": "vae_name",
+      "value": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name_1",
+      "label": "audio_vae",
+      "value": "minimax_h3_audio_vae_fp32.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "value",
+      "label": "turbo_mode",
+      "value": false,
+      "disabled": false
+     },
+     {
+      "name": "lora_name",
+      "label": "lora_name",
+      "value": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "strength_model_1",
+      "label": "turbo_model_strength",
+      "value": 1,
+      "disabled": false
+     },
+     {
+      "name": "value_2",
+      "label": "turbo_steps",
+      "value": 8,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "first_frame",
+      "label": "first_frame",
+      "type": "IMAGE"
+     },
+     {
+      "name": "last_frame",
+      "label": "last_frame",
+      "type": "IMAGE"
+     },
+     {
+      "name": "width",
+      "label": "width",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "VIDEO",
+      "type": "VIDEO"
+     }
+    ]
+   }
+  ],
+  "mine": [
+   {
+    "type": "MarkdownNote",
+    "title": "Note: MiniMax H3",
+    "pos": [
+     -2080,
+     4840
+    ],
+    "size": [
+     450,
+     740
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## MiniMax H3\n\n[MiniMax H3](https://www.minimax.io/blog/minimax-h3) is MiniMax's general-purpose, omni-modal generation model. It jointly understands text, image, video, and audio, and generates video with **native stereo audio**: voice, sound effects, and music are modeled jointly in a single forward pass, not layered on afterward. Output is up to 2K resolution, 24fps, and up to about 15 seconds.\n\n## ComfyUI links\n- [ComfyUI#15224](https://github.com/Comfy-Org/ComfyUI/pull/15224)\n- [🤗 Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n\n## About this workflow\n\n**Key inputs**\n\n- **prompt**: describe the shots, camera moves, and the accompanying audio (dialogue, SFX, music) in one block\n- **width / height**: set via Resolution Selector. H3's native canvas is a 768px short edge, capped at 768x1344 pixels, rounded to a multiple of 32\n- **duration (seconds)**: converted to a valid frame `length` by the Math Expression node, snapping up to the model's 17-frame-per-block (17k+5) grid at 24fps\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Model Links",
+    "pos": [
+     -2550,
+     4840
+    ],
+    "size": [
+     440,
+     824
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links\n\n- [Hugging Face:Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- [ModelScope:Comfy-Org/MiniMax-H3](https://modelscope.cn/models/Comfy-Org/MiniMax-H3)\n\n**vae**\n\n- [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors)\n- [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors)\n\n**diffusion_models**\n\n- [minimax_h3_fl2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors)\n\n**loras**\n\n- 8 steps:  [minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors](https://huggingface.co/lightx2v/Minimax-h3-Turbo/resolve/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors)\n-  4 steps: [minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/loras/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors)\n\n**embeddings**\n\n- [10 style embeddings](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/embeddings) (`minimaxh3_*.safetensors`), for example `minimaxh3_art_is_explosion`\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_fl2va_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n│   ├── 📂 loras/\n│   │   └── minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors\n│   └── 📂 embeddings/\n│       └── minimaxh3_art_is_explosion.safetensors\n```\n\n## Using Prompt Embeddings\n\nPrompt embeddings (supported since [ComfyUI#15697](https://github.com/Comfy-Org/ComfyUI/pull/15697)) add reusable style tokens to your prompt. Download one or more embeddings from the folder above into `ComfyUI/models/embeddings/`, then reference one in the prompt text with the `embedding:` prefix and the filename without its extension, for example:\n\n`embedding:minimaxh3_art_is_explosion`\n\nUsing an embedding is optional and the template runs fine without one.\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Size Settings Reference",
+    "pos": [
+     -1570,
+     5460
+    ],
+    "size": [
+     310,
+     390
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "| megapixels | Aspect | Output (multiple=32) |\n|---|---|---|\n| 0.2 | 16:9 | 608 x 352 |\n| 0.3 | 16:9 | 736 x 416 |\n| 0.4 | 16:9 | 864 x 480 |\n| 0.5 | 16:9 | 960 x 544 |\n| 0.6 | 16:9 | 1056 x 608 |\n| 0.7 | 16:9 | 1152 x 640 |\n| 0.8 | 16:9 | 1216 x 672 |\n| 0.9 | 16:9 | 1280 x 736 |\n| 0.98 | 16:9 | 1344 x 768 (official 768p) |\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     -660,
+     4840
+    ],
+    "size": [
+     1070,
+     358
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "filename_prefix (文件名前缀)",
+      "value": "video/MiniMax_H3",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "format (格式)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "format.codec (编解码器)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "codec (编码器)",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ResolutionSelector",
+    "title": "分辨率选择器",
+    "pos": [
+     -1550,
+     5220
+    ],
+    "size": [
+     270,
+     170
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "aspect_ratio",
+      "label": "aspect_ratio (宽高比)",
+      "value": "16:9 (Widescreen)",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "megapixels (百万像素)",
+      "value": 0.4,
+      "disabled": false
+     },
+     {
+      "name": "multiple",
+      "label": "multiple (倍数)",
+      "value": 32,
+      "disabled": false
+     },
+     {
+      "name": "preview",
+      "label": "preview",
+      "value": "",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "79dd8a95-ce9d-4c14-b264-2162e8bec5ce",
+    "title": "Image to Video (MiniMax H3)",
+    "pos": [
+     -1180,
+     4840
+    ],
+    "size": [
+     480,
+     630
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "prompt",
+      "label": "prompt (提示词)",
+      "value": "Realistic live-action cinematic look, action movie trailer: practical film photography style, a post-rain dusk metropolis, anamorphic lens, shallow depth of field, film grain, city volumetric fog, flying-car traffic between the towers, restrained grading for a premium feel, powerful natural movement.\n\nScene overview: at dusk on a cluster of skyscrapers, the protagonist is being chased, sprinting and leaping across rooftops, jumping from one building's roof to the next with pursuers closing in behind. This is the escape sequence of an action movie trailer: every leap is life-or-death, thrilling and fluid.\n\nStoryboard (each shot a separate scene, rapid cuts, all landing on the musical beats):\n[0s-1.5s] Shot 1: high side angle: the protagonist sprinting at the roof edge, pursuers appearing in the rooftop doorway behind him, wind catching his coat.\n[1s-2.5s] Shot 2: the protagonist leaps across the gap between buildings, body stretching mid-air, towers and flying-car light trails behind him, a slight slow-motion feel.\n[2.5s-4s] Shot 3: he lands, rolls and rises, low-angle shot, tower shadows and fog behind him, he keeps running.\n[4s-5s] Shot 4: freeze: the instant he hits the edge of the next roof and launches into the jump, silhouette, holding.\n\nCamera: each shot its own angle, cuts clean and hard, no dissolves, a slight frame jitter on the jumps.\n\nAudio: wind, rapid footsteps, city ambience, low score underneath, an accent hit on each leap, the score bursting at 4s, closing the last 1s.\n\nNo text, subtitles, logos or watermarks of any kind, no animation or cartoon rendering, no overly-CG look, keep the live-action texture.",
+      "disabled": false
+     },
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "value": 1344,
+      "disabled": false
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "value": 768,
+      "disabled": false
+     },
+     {
+      "name": "value_1",
+      "label": "duration (时长)",
+      "value": 5,
+      "disabled": false
+     },
+     {
+      "name": "noise_seed",
+      "label": "noise_seed (噪波随机种)",
+      "value": 757358688076805,
+      "disabled": false
+     },
+     {
+      "name": "unet_name",
+      "label": "unet_name (UNet名称)",
+      "value": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "clip_name",
+      "label": "clip_name (CLIP名称)",
+      "value": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name",
+      "label": "vae_name (VAE名称)",
+      "value": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name_1",
+      "label": "audio_vae (音频VAE)",
+      "value": "minimax_h3_audio_vae_fp32.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "value",
+      "label": "turbo_mode",
+      "value": false,
+      "disabled": false
+     },
+     {
+      "name": "lora_name",
+      "label": "lora_name (LoRA名称)",
+      "value": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "strength_model_1",
+      "label": "turbo_model_strength",
+      "value": 1,
+      "disabled": false
+     },
+     {
+      "name": "value_2",
+      "label": "turbo_steps",
+      "value": 8,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "first_frame",
+      "label": "first_frame (首帧)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "last_frame",
+      "label": "last_frame (尾帧)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "VIDEO (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   }
+  ]
+ },
+ "i2v": {
+  "comfy": [
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     -210,
+     4850
+    ],
+    "size": [
+     1070,
+     358
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "文件名前缀",
+      "value": "video/MiniMax_H3",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "格式",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "编解码器",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "编码器",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "视频",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -1610,
+     4860
+    ],
+    "size": [
+     450,
+     630
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "图像",
+      "value": "transparent_rgb_gaming_mouse.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "选择文件上传",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "遮罩",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "ResolutionSelector",
+    "title": "分辨率选择器",
+    "pos": [
+     -1110,
+     5230
+    ],
+    "size": [
+     270,
+     170
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "aspect_ratio",
+      "label": "宽高比",
+      "value": "1:1 (Square)",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "百万像素",
+      "value": 0.4,
+      "disabled": false
+     },
+     {
+      "name": "multiple",
+      "label": "倍数",
+      "value": 32,
+      "disabled": false
+     },
+     {
+      "name": "preview",
+      "label": "preview",
+      "value": null,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "宽度",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "高度",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "4c314f31-ecda-4b08-ae98-faaba1bf613f",
+    "title": "Image to Video (MiniMax H3)",
+    "pos": [
+     -730,
+     4850
+    ],
+    "size": [
+     480,
+     630
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "prompt",
+      "label": "prompt",
+      "value": "Editorial tech product film. The transparent gaming mouse from <Picture 1> in its original scene: a pitch-black studio void with a dark, subtle reflective surface, lit by dramatic duotone vibrant blue and warm neon orange rim lighting, deep soft shadow falloff into pure black. Monochromatic dark palette with electric blue and amber accents. Material motif: glowing internal metallic micro-components and glossy acrylic refractions. The environment is constant throughout.\nSHOT 1: The scene opens exactly on image 1, the mouse resting confidently on the dark surface; the blue and orange lights slowly pulse brighter, refracting deeply through the transparent acrylic shell as the camera executes a slow, deliberate push-in to reveal the intricate circuitry.\nSHOT 2: Cut to an extreme macro profile of the ridged scroll wheel and layered internal micro-components; the camera glides slowly along the side as a sharp beam of warm orange light sweeps across the metallic textures, contrasting perfectly against the deep blue ambient glow.\nSHOT 3: Cut to a low-angle beauty shot: the mouse levitates weightlessly a few centimeters above the dark reflective surface, rotating in a slow, precise orbit; the duotone lighting flares gently along the glassy transparent edges before fading slowly into a sleek silhouette.\nAudio: deep pulsing sub-bass room tone, sharp tactile mechanical clicks, a sweeping glassy whoosh on cuts, and a rising electronic swell that resolves to near-silence on the final fade. ",
+      "disabled": false
+     },
+     {
+      "name": "width",
+      "label": "width",
+      "value": 1344,
+      "disabled": false
+     },
+     {
+      "name": "height",
+      "label": "height",
+      "value": 768,
+      "disabled": false
+     },
+     {
+      "name": "value_1",
+      "label": "duration",
+      "value": 5,
+      "disabled": false
+     },
+     {
+      "name": "noise_seed",
+      "label": "noise_seed",
+      "value": 757358688076805,
+      "disabled": false
+     },
+     {
+      "name": "unet_name",
+      "label": "unet_name",
+      "value": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "clip_name",
+      "label": "clip_name",
+      "value": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name",
+      "label": "vae_name",
+      "value": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name_1",
+      "label": "audio_vae",
+      "value": "minimax_h3_audio_vae_fp32.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "value",
+      "label": "turbo_mode",
+      "value": false,
+      "disabled": false
+     },
+     {
+      "name": "lora_name",
+      "label": "lora_name",
+      "value": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "strength_model_1",
+      "label": "turbo_model_strength",
+      "value": 1,
+      "disabled": false
+     },
+     {
+      "name": "value_2",
+      "label": "turbo_steps",
+      "value": 8,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "first_frame",
+      "label": "first_frame",
+      "type": "IMAGE"
+     },
+     {
+      "name": "last_frame",
+      "label": "last_frame",
+      "type": "IMAGE"
+     },
+     {
+      "name": "width",
+      "label": "width",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "VIDEO",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: MiniMax H3",
+    "pos": [
+     -2090,
+     4860
+    ],
+    "size": [
+     450,
+     630
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## MiniMax H3\n\n[MiniMax H3](https://www.minimax.io/blog/minimax-h3) is MiniMax's general-purpose, omni-modal generation model. It jointly understands text, image, video, and audio, and generates video with **native stereo audio**: voice, sound effects, and music are modeled jointly in a single forward pass, not layered on afterward. Output is up to 2K resolution, 24fps, and up to about 15 seconds.\n\n## About this workflow\n\nThis template runs the **Image to Video** task (`MiniMaxH3ImageToVideo` node), which covers both:\n\n- **t2va** (text-to-video), when no images are connected\n- **fl2va** (first/last-frame image-to-video), when `first_frame` and/or `last_frame` are connected\n\n**Key inputs**\n\n- **first_frame / last_frame**: optional keyframes; the model generates the motion between them\n- **prompt**: describe the shots, motion, and the accompanying audio (dialogue, SFX, music) in one block\n- **width / height**: set via Resolution Selector. H3's native canvas is a 768px short edge, capped at 768x1344 pixels, rounded to a multiple of 32\n- **duration (seconds)**: converted to a valid frame `length` by the Math Expression node, snapping up to the model's 17-frame-per-block (17k+5) grid at 24fps",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Model Links",
+    "pos": [
+     -2570,
+     4860
+    ],
+    "size": [
+     440,
+     888
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links\n\n- [Hugging Face:Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- [ModelScope:Comfy-Org/MiniMax-H3](https://modelscope.cn/models/Comfy-Org/MiniMax-H3)\n\n**Input Assets**\n- [transparent_rgb_gaming_mouse.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/transparent_rgb_gaming_mouse.png) — required workflow input (`input/transparent_rgb_gaming_mouse.png`)\n\n**vae**\n\n- [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors)\n- [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors)\n\n**diffusion_models**\n\n- [minimax_h3_fl2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors)\n\n**loras**\n\n- 8 steps:  [minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors](https://huggingface.co/lightx2v/Minimax-h3-Turbo/resolve/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors)\n-  4 steps: [minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/loras/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors)\n\n**embeddings**\n\n- [10 style embeddings](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/embeddings) (`minimaxh3_*.safetensors`), for example `minimaxh3_art_is_explosion`\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_fl2va_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n│   ├── 📂 loras/\n│   │   └── minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors\n│   └── 📂 embeddings/\n│       └── minimaxh3_art_is_explosion.safetensors\n```\n\n## Using Prompt Embeddings\n\nPrompt embeddings (supported since [ComfyUI#15697](https://github.com/Comfy-Org/ComfyUI/pull/15697)) add reusable style tokens to your prompt. Download one or more embeddings from the folder above into `ComfyUI/models/embeddings/`, then reference one in the prompt text with the `embedding:` prefix and the filename without its extension, for example:\n\n`embedding:minimaxh3_art_is_explosion`\n\nUsing an embedding is optional and the template runs fine without one.\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Size Settings Reference",
+    "pos": [
+     -1130,
+     5460
+    ],
+    "size": [
+     320,
+     380
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "| megapixels | Aspect | Output (multiple=32) |\n|---|---|---|\n| 0.2 | 16:9 | 608 x 352 |\n| 0.3 | 16:9 | 736 x 416 |\n| 0.4 | 16:9 | 864 x 480 |\n| 0.5 | 16:9 | 960 x 544 |\n| 0.6 | 16:9 | 1056 x 608 |\n| 0.7 | 16:9 | 1152 x 640 |\n| 0.8 | 16:9 | 1216 x 672 |\n| 0.9 | 16:9 | 1280 x 736 |\n| 0.98 | 16:9 | 1344 x 768 (official 768p) |",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "ImageScaleToTotalPixels",
+    "title": "缩放图像（像素）",
+    "pos": [
+     -1520,
+     5610
+    ],
+    "size": [
+     280,
+     170
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "upscale_method",
+      "label": "缩放算法",
+      "value": "nearest-exact",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "像素数量",
+      "value": 0.9,
+      "disabled": false
+     },
+     {
+      "name": "resolution_steps",
+      "label": "分辨率步数",
+      "value": 32,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "image",
+      "label": "图像",
+      "type": "IMAGE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     }
+    ]
+   },
+   {
+    "type": "GetImageSize",
+    "title": "获取图像尺寸",
+    "pos": [
+     -1490,
+     5830
+    ],
+    "size": [
+     230,
+     100
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "image",
+      "label": "图像",
+      "type": "IMAGE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "宽度",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "高度",
+      "type": "INT"
+     },
+     {
+      "name": "batch_size",
+      "label": "批处理大小",
+      "type": "INT"
+     }
+    ]
+   }
+  ],
+  "mine": [
+   {
+    "type": "MarkdownNote",
+    "title": "Note: MiniMax H3",
+    "pos": [
+     -2090,
+     4860
+    ],
+    "size": [
+     450,
+     630
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## MiniMax H3\n\n[MiniMax H3](https://www.minimax.io/blog/minimax-h3) is MiniMax's general-purpose, omni-modal generation model. It jointly understands text, image, video, and audio, and generates video with **native stereo audio**: voice, sound effects, and music are modeled jointly in a single forward pass, not layered on afterward. Output is up to 2K resolution, 24fps, and up to about 15 seconds.\n\n## About this workflow\n\nThis template runs the **Image to Video** task (`MiniMaxH3ImageToVideo` node), which covers both:\n\n- **t2va** (text-to-video), when no images are connected\n- **fl2va** (first/last-frame image-to-video), when `first_frame` and/or `last_frame` are connected\n\n**Key inputs**\n\n- **first_frame / last_frame**: optional keyframes; the model generates the motion between them\n- **prompt**: describe the shots, motion, and the accompanying audio (dialogue, SFX, music) in one block\n- **width / height**: set via Resolution Selector. H3's native canvas is a 768px short edge, capped at 768x1344 pixels, rounded to a multiple of 32\n- **duration (seconds)**: converted to a valid frame `length` by the Math Expression node, snapping up to the model's 17-frame-per-block (17k+5) grid at 24fps",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Model Links",
+    "pos": [
+     -2570,
+     4860
+    ],
+    "size": [
+     440,
+     888
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "Guide: [Subgraph](https://docs.comfy.org/interface/features/subgraph)\n\n## Model Links\n\n- [Hugging Face:Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n- [ModelScope:Comfy-Org/MiniMax-H3](https://modelscope.cn/models/Comfy-Org/MiniMax-H3)\n\n**Input Assets**\n- [transparent_rgb_gaming_mouse.png](https://raw.githubusercontent.com/Comfy-Org/workflow_templates/refs/heads/main/input/transparent_rgb_gaming_mouse.png) — required workflow input (`input/transparent_rgb_gaming_mouse.png`)\n\n**vae**\n\n- [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors)\n- [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors)\n\n**diffusion_models**\n\n- [minimax_h3_fl2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_fl2va_pruned_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors)\n\n**loras**\n\n- 8 steps:  [minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors](https://huggingface.co/lightx2v/Minimax-h3-Turbo/resolve/main/minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors)\n-  4 steps: [minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/loras/minimax_h3_fl2v_turbo_4step_v1.0_768p_comfyui_bf16.safetensors)\n\n**embeddings**\n\n- [10 style embeddings](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/embeddings) (`minimaxh3_*.safetensors`), for example `minimaxh3_art_is_explosion`\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_fl2va_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n│   ├── 📂 loras/\n│   │   └── minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors\n│   └── 📂 embeddings/\n│       └── minimaxh3_art_is_explosion.safetensors\n```\n\n## Using Prompt Embeddings\n\nPrompt embeddings (supported since [ComfyUI#15697](https://github.com/Comfy-Org/ComfyUI/pull/15697)) add reusable style tokens to your prompt. Download one or more embeddings from the folder above into `ComfyUI/models/embeddings/`, then reference one in the prompt text with the `embedding:` prefix and the filename without its extension, for example:\n\n`embedding:minimaxh3_art_is_explosion`\n\nUsing an embedding is optional and the template runs fine without one.\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Size Settings Reference",
+    "pos": [
+     -1130,
+     5460
+    ],
+    "size": [
+     320,
+     380
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "| megapixels | Aspect | Output (multiple=32) |\n|---|---|---|\n| 0.2 | 16:9 | 608 x 352 |\n| 0.3 | 16:9 | 736 x 416 |\n| 0.4 | 16:9 | 864 x 480 |\n| 0.5 | 16:9 | 960 x 544 |\n| 0.6 | 16:9 | 1056 x 608 |\n| 0.7 | 16:9 | 1152 x 640 |\n| 0.8 | 16:9 | 1216 x 672 |\n| 0.9 | 16:9 | 1280 x 736 |\n| 0.98 | 16:9 | 1344 x 768 (official 768p) |",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     -210,
+     4850
+    ],
+    "size": [
+     1070,
+     358
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "filename_prefix (文件名前缀)",
+      "value": "video/MiniMax_H3",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "format (格式)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "format.codec (编解码器)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "codec (编码器)",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -1610,
+     4860
+    ],
+    "size": [
+     450,
+     630
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "value": "transparent_rgb_gaming_mouse.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "upload (选择文件上传)",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "MASK (遮罩)",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "ResolutionSelector",
+    "title": "分辨率选择器",
+    "pos": [
+     -1110,
+     5230
+    ],
+    "size": [
+     270,
+     170
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "aspect_ratio",
+      "label": "aspect_ratio (宽高比)",
+      "value": "1:1 (Square)",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "megapixels (百万像素)",
+      "value": 0.4,
+      "disabled": false
+     },
+     {
+      "name": "multiple",
+      "label": "multiple (倍数)",
+      "value": 32,
+      "disabled": false
+     },
+     {
+      "name": "preview",
+      "label": "preview",
+      "value": "",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "4c314f31-ecda-4b08-ae98-faaba1bf613f",
+    "title": "Image to Video (MiniMax H3)",
+    "pos": [
+     -730,
+     4850
+    ],
+    "size": [
+     480,
+     630
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "prompt",
+      "label": "prompt (提示词)",
+      "value": "Editorial tech product film. The transparent gaming mouse from <Picture 1> in its original scene: a pitch-black studio void with a dark, subtle reflective surface, lit by dramatic duotone vibrant blue and warm neon orange rim lighting, deep soft shadow falloff into pure black. Monochromatic dark palette with electric blue and amber accents. Material motif: glowing internal metallic micro-components and glossy acrylic refractions. The environment is constant throughout.\nSHOT 1: The scene opens exactly on image 1, the mouse resting confidently on the dark surface; the blue and orange lights slowly pulse brighter, refracting deeply through the transparent acrylic shell as the camera executes a slow, deliberate push-in to reveal the intricate circuitry.\nSHOT 2: Cut to an extreme macro profile of the ridged scroll wheel and layered internal micro-components; the camera glides slowly along the side as a sharp beam of warm orange light sweeps across the metallic textures, contrasting perfectly against the deep blue ambient glow.\nSHOT 3: Cut to a low-angle beauty shot: the mouse levitates weightlessly a few centimeters above the dark reflective surface, rotating in a slow, precise orbit; the duotone lighting flares gently along the glassy transparent edges before fading slowly into a sleek silhouette.\nAudio: deep pulsing sub-bass room tone, sharp tactile mechanical clicks, a sweeping glassy whoosh on cuts, and a rising electronic swell that resolves to near-silence on the final fade. ",
+      "disabled": false
+     },
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "value": 1344,
+      "disabled": false
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "value": 768,
+      "disabled": false
+     },
+     {
+      "name": "value_1",
+      "label": "duration (时长)",
+      "value": 5,
+      "disabled": false
+     },
+     {
+      "name": "noise_seed",
+      "label": "noise_seed (噪波随机种)",
+      "value": 757358688076805,
+      "disabled": false
+     },
+     {
+      "name": "unet_name",
+      "label": "unet_name (UNet名称)",
+      "value": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "clip_name",
+      "label": "clip_name (CLIP名称)",
+      "value": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name",
+      "label": "vae_name (VAE名称)",
+      "value": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "vae_name_1",
+      "label": "audio_vae (音频VAE)",
+      "value": "minimax_h3_audio_vae_fp32.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "value",
+      "label": "turbo_mode",
+      "value": false,
+      "disabled": false
+     },
+     {
+      "name": "lora_name",
+      "label": "lora_name (LoRA名称)",
+      "value": "minimax_h3_fl2v_turbo_8step_v1.0_comfyui_bf16.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "strength_model_1",
+      "label": "turbo_model_strength",
+      "value": 1,
+      "disabled": false
+     },
+     {
+      "name": "value_2",
+      "label": "turbo_steps",
+      "value": 8,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "first_frame",
+      "label": "first_frame (首帧)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "last_frame",
+      "label": "last_frame (尾帧)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "VIDEO (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ImageScaleToTotalPixels",
+    "title": "缩放图像（像素）",
+    "pos": [
+     -1520,
+     5610
+    ],
+    "size": [
+     280,
+     170
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "upscale_method",
+      "label": "upscale_method (缩放算法)",
+      "value": "nearest-exact",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "megapixels (像素数量)",
+      "value": 0.9,
+      "disabled": false
+     },
+     {
+      "name": "resolution_steps",
+      "label": "resolution_steps (分辨率步数)",
+      "value": 32,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "type": "IMAGE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     }
+    ]
+   },
+   {
+    "type": "GetImageSize",
+    "title": "获取图像尺寸",
+    "pos": [
+     -1490,
+     5830
+    ],
+    "size": [
+     230,
+     100
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "type": "IMAGE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     },
+     {
+      "name": "batch_size",
+      "label": "batch_size (批处理大小)",
+      "type": "INT"
+     }
+    ]
+   }
+  ]
+ },
+ "r2v": {
+  "comfy": [
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     750,
+     4870
+    ],
+    "size": [
+     1380,
+     970
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "文件名前缀",
+      "value": "video/MiniMax_H3",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "格式",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "编解码器",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "编码器",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "视频",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ResolutionSelector",
+    "title": "Resolution Selector (Size)",
+    "pos": [
+     -1490,
+     6060
+    ],
+    "size": [
+     270,
+     170
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "aspect_ratio",
+      "label": "宽高比",
+      "value": "16:9 (Widescreen)",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "百万像素",
+      "value": 0.4,
+      "disabled": false
+     },
+     {
+      "name": "multiple",
+      "label": "倍数",
+      "value": 32,
+      "disabled": false
+     },
+     {
+      "name": "preview",
+      "label": "preview",
+      "value": null,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "宽度",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "高度",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: MiniMax H3",
+    "pos": [
+     -2030,
+     4850
+    ],
+    "size": [
+     450,
+     890
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## MiniMax H3\n\n[MiniMax H3](https://www.minimax.io/blog/minimax-h3) is MiniMax's general-purpose, omni-modal generation model. It jointly understands text, image, video, and audio, and generates video with **native stereo audio**: voice, sound effects, and music are modeled jointly in a single forward pass, not layered on afterward. Output is up to 2K resolution, 24fps, and up to about 15 seconds.\n\n## ComfyUI links\n- [ComfyUI#15224](https://github.com/Comfy-Org/ComfyUI/pull/15224)\n- [🤗 Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n\n## About this workflow\n\nThis template runs the **reference-to-video (ref2va)** task using the `MiniMaxH3ReferenceToVideo` node. It takes any mix of reference images, videos, and standalone audio, and weaves them into the generation to lock in a character's identity, a style, a motion, a camera move, or a voice.\n\n**Key inputs**\n\n- **ref_images / ref_videos / ref_video_audios / ref_audios**: up to 9 reference images, 3 reference videos (each may carry its own paired soundtrack), and 3 standalone reference audio clips\n- **prompt**: reference the inputs by tag, in the exact order they were connected, for example `<Picture 1>`, `<Video 1>`, `<Audio 1>`, then describe the target scene, motion, and audio\n- **ref_image_size**: `match` scales references down to the generation's resolution (faster); `max` keeps up to a 2048px short edge for stronger identity fidelity, at the cost of speed since reference tokens ride along every sampling step\n- **width / height**: set via Resolution Selector.\n- **duration (seconds)**: converted to a valid frame `length` by the Math Expression node\n\n**Sampling and decode**\n\n- Sampler: `res_multistep`. `beta` or `normal` scheduler tends to outperform `simple` for reference-heavy prompts like this one\n- The sampler's joint audio+video `LATENT` output feeds directly into both `VAEDecode` (video, `minimax_h3_video_vae_int8_convrot`) and `VAEDecodeAudio` (audio, `minimax_h3_audio_vae_fp32`); each decode node automatically pulls its own half out of the packed latent. `CreateVideo` then muxes the two into a single MP4 with synced sound\n- The diffusion model here is `minimax_h3_ref2va_pruned_int8_convrot.safetensors`, a different set of weights from the `fl2va` model used by the t2v/i2v templates\n\nRef2va's output is very sensitive to prompt wording; matching the reference tags precisely and being explicit about which reference drives which part of the shot tends to work best.",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Model Links",
+    "pos": [
+     -2500,
+     4850
+    ],
+    "size": [
+     440,
+     740
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## Model Links\n[🤗 Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n\n**vae**\n\n- [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors)\n- [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors)\n\n**diffusion_models**\n\n- [minimax_h3_ref2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors)\n\n**loras**\n\n- 4 steps: [minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors)\n\n**embeddings**\n\n- [10 style embeddings](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/embeddings) (`minimaxh3_*.safetensors`), for example `minimaxh3_art_is_explosion`\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_ref2va_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n│   ├── 📂 loras/\n│   │   └── minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors\n│   └── 📂 embeddings/\n│       └── minimaxh3_art_is_explosion.safetensors\n```\n\n## Using Prompt Embeddings\n\nPrompt embeddings (supported since [ComfyUI#15697](https://github.com/Comfy-Org/ComfyUI/pull/15697)) add reusable style tokens to your prompt. Download one or more embeddings from the folder above into `ComfyUI/models/embeddings/`, then reference one in the prompt text with the `embedding:` prefix and the filename without its extension, for example:\n\n`embedding:minimaxh3_art_is_explosion`\n\nUsing an embedding is optional and the template runs fine without one.\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "VAELoader",
+    "title": "加载VAE",
+    "pos": [
+     -1490,
+     5490
+    ],
+    "size": [
+     640,
+     70
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "vae_name",
+      "label": "vae名称",
+      "value": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "VAE",
+      "label": "VAE",
+      "type": "VAE"
+     }
+    ]
+   },
+   {
+    "type": "VAELoader",
+    "title": "加载VAE",
+    "pos": [
+     -1490,
+     5630
+    ],
+    "size": [
+     650,
+     70
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "vae_name",
+      "label": "vae名称",
+      "value": "minimax_h3_audio_vae_fp32.safetensors",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "VAE",
+      "label": "VAE",
+      "type": "VAE"
+     }
+    ]
+   },
+   {
+    "type": "VAEDecodeAudio",
+    "title": "VAE解码（音频）",
+    "pos": [
+     20,
+     5750
+    ],
+    "size": [
+     230,
+     60
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "samples",
+      "label": "Latent",
+      "type": "LATENT"
+     },
+     {
+      "name": "vae",
+      "label": "vae",
+      "type": "VAE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "AUDIO",
+      "label": "音频",
+      "type": "AUDIO"
+     }
+    ]
+   },
+   {
+    "type": "VAEDecode",
+    "title": "VAE解码",
+    "pos": [
+     20,
+     5650
+    ],
+    "size": [
+     230,
+     60
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "samples",
+      "label": "Latent",
+      "type": "LATENT"
+     },
+     {
+      "name": "vae",
+      "label": "vae",
+      "type": "VAE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     }
+    ]
+   },
+   {
+    "type": "KSamplerSelect",
+    "title": "K采样器选择",
+    "pos": [
+     0,
+     5200
+    ],
+    "size": [
+     370,
+     70
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "sampler_name",
+      "label": "采样器名称",
+      "value": "res_multistep",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "SAMPLER",
+      "label": "采样器",
+      "type": "SAMPLER"
+     }
+    ]
+   },
+   {
+    "type": "BasicScheduler",
+    "title": "基本调度器",
+    "pos": [
+     0,
+     5320
+    ],
+    "size": [
+     370,
+     130
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "scheduler",
+      "label": "调度器",
+      "value": "simple",
+      "disabled": false
+     },
+     {
+      "name": "steps",
+      "label": "步数",
+      "value": 20,
+      "disabled": false
+     },
+     {
+      "name": "denoise",
+      "label": "降噪",
+      "value": 1,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "model",
+      "label": "模型",
+      "type": "MODEL"
+     },
+     {
+      "name": "steps",
+      "label": "步数",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "SIGMAS",
+      "label": "Sigmas",
+      "type": "SIGMAS"
+     }
+    ]
+   },
+   {
+    "type": "SamplerCustomAdvanced",
+    "title": "自定义采样器（高级）",
+    "pos": [
+     410,
+     5120
+    ],
+    "size": [
+     230,
+     140
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "noise",
+      "label": "噪波",
+      "type": "NOISE"
+     },
+     {
+      "name": "guider",
+      "label": "引导器",
+      "type": "GUIDER"
+     },
+     {
+      "name": "sampler",
+      "label": "采样器",
+      "type": "SAMPLER"
+     },
+     {
+      "name": "sigmas",
+      "label": "西格玛",
+      "type": "SIGMAS"
+     },
+     {
+      "name": "latent_image",
+      "label": "Latent图像",
+      "type": "LATENT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output",
+      "label": "Latent",
+      "type": "LATENT"
+     },
+     {
+      "name": "denoised_output",
+      "label": "降噪Latent",
+      "type": "LATENT"
+     }
+    ]
+   },
+   {
+    "type": "BasicGuider",
+    "title": "基本引导器",
+    "pos": [
+     0,
+     5090
+    ],
+    "size": [
+     360,
+     60
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "model",
+      "label": "模型",
+      "type": "MODEL"
+     },
+     {
+      "name": "conditioning",
+      "label": "条件",
+      "type": "CONDITIONING"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "GUIDER",
+      "label": "引导器",
+      "type": "GUIDER"
+     }
+    ]
+   },
+   {
+    "type": "UNETLoader",
+    "title": "UNet加载器",
+    "pos": [
+     -1490,
+     4980
+    ],
+    "size": [
+     640,
+     90
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "unet_name",
+      "label": "UNet名称",
+      "value": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "weight_dtype",
+      "label": "数据类型",
+      "value": "default",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "MODEL",
+      "label": "模型",
+      "type": "MODEL"
+     }
+    ]
+   },
+   {
+    "type": "CLIPLoader",
+    "title": "加载CLIP",
+    "pos": [
+     -1490,
+     5300
+    ],
+    "size": [
+     640,
+     120
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "clip_name",
+      "label": "CLIP名称",
+      "value": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "type",
+      "label": "类型",
+      "value": "minimax",
+      "disabled": false
+     },
+     {
+      "name": "device",
+      "label": "设备",
+      "value": "default",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "CLIP",
+      "label": "CLIP",
+      "type": "CLIP"
+     }
+    ]
+   },
+   {
+    "type": "RandomNoise",
+    "title": "随机噪波",
+    "pos": [
+     0,
+     4950
+    ],
+    "size": [
+     360,
+     90
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "noise_seed",
+      "label": "噪波随机种",
+      "value": 261662374822964,
+      "disabled": false
+     },
+     {
+      "name": "control_after_generate",
+      "label": "生成后控制",
+      "value": "randomize",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "NOISE",
+      "label": "噪波",
+      "type": "NOISE"
+     }
+    ]
+   },
+   {
+    "type": "CreateVideo",
+    "title": "创建视频",
+    "pos": [
+     330,
+     5650
+    ],
+    "size": [
+     270,
+     150
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "fps",
+      "label": "帧率",
+      "value": 24,
+      "disabled": false
+     },
+     {
+      "name": "bit_depth",
+      "label": "bit_depth",
+      "value": 8,
+      "disabled": false
+     },
+     {
+      "name": "color_space",
+      "label": "color_space",
+      "value": "sRGB",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "codec",
+      "value": "none",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "images",
+      "label": "图像",
+      "type": "IMAGE"
+     },
+     {
+      "name": "audio",
+      "label": "音频",
+      "type": "AUDIO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "视频",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ComfyMathExpression",
+    "title": "数学表达式",
+    "pos": [
+     -1490,
+     6440
+    ],
+    "size": [
+     225,
+     74
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "expression",
+      "label": "表达式",
+      "value": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "values.a",
+      "label": "a",
+      "type": "FLOAT,INT,BOOLEAN"
+     },
+     {
+      "name": "values.b",
+      "label": "b",
+      "type": "FLOAT,INT,BOOLEAN"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "FLOAT",
+      "label": "浮点",
+      "type": "FLOAT"
+     },
+     {
+      "name": "INT",
+      "label": "整数",
+      "type": "INT"
+     },
+     {
+      "name": "BOOL",
+      "label": "布尔值",
+      "type": "BOOLEAN"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveFloat",
+    "title": "Float (Duration)",
+    "pos": [
+     -1490,
+     6300
+    ],
+    "size": [
+     270,
+     70
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "值",
+      "value": 5,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "FLOAT",
+      "label": "浮点",
+      "type": "FLOAT"
+     }
+    ]
+   },
+   {
+    "type": "MiniMaxH3ReferenceToVideo",
+    "title": "MiniMax H3 参考转视频",
+    "pos": [
+     -620,
+     5420
+    ],
+    "size": [
+     400,
+     404
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "prompt",
+      "label": "提示词",
+      "value": "",
+      "disabled": false
+     },
+     {
+      "name": "width",
+      "label": "宽度",
+      "value": 1344,
+      "disabled": false
+     },
+     {
+      "name": "height",
+      "label": "高度",
+      "value": 768,
+      "disabled": false
+     },
+     {
+      "name": "length",
+      "label": "长度",
+      "value": 124,
+      "disabled": false
+     },
+     {
+      "name": "ref_image_size",
+      "label": "参考图像尺寸",
+      "value": "match",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "clip",
+      "label": "clip",
+      "type": "CLIP"
+     },
+     {
+      "name": "vae",
+      "label": "vae",
+      "type": "VAE"
+     },
+     {
+      "name": "audio_vae",
+      "label": "audio_vae",
+      "type": "VAE"
+     },
+     {
+      "name": "ref_images.ref_image_0",
+      "label": "ref_image_0",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_images.ref_image_1",
+      "label": "ref_image_1",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_images.ref_image_2",
+      "label": "ref_image_2",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_videos.ref_video_0",
+      "label": "ref_video_0",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_video_audios.ref_video_audio_0",
+      "label": "ref_video_audio_0",
+      "type": "AUDIO"
+     },
+     {
+      "name": "ref_audios.ref_audio_0",
+      "label": "ref_audio_0",
+      "type": "AUDIO"
+     },
+     {
+      "name": "ref_audios.ref_audio_1",
+      "label": "ref_audio_1",
+      "type": "AUDIO"
+     },
+     {
+      "name": "ref_audios.ref_audio_2",
+      "label": "ref_audio_2",
+      "type": "AUDIO"
+     },
+     {
+      "name": "prompt",
+      "label": "提示词",
+      "type": "STRING"
+     },
+     {
+      "name": "width",
+      "label": "宽度",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "高度",
+      "type": "INT"
+     },
+     {
+      "name": "length",
+      "label": "长度",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "positive",
+      "label": "正向",
+      "type": "CONDITIONING"
+     },
+     {
+      "name": "LATENT",
+      "label": "Latent",
+      "type": "LATENT"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -1050,
+     5960
+    ],
+    "size": [
+     290,
+     330
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "图像",
+      "value": "red_superboy_on_city_roof.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "选择文件上传",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "遮罩",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveStringMultiline",
+    "title": "Input Text (Prompt)",
+    "pos": [
+     -1490,
+     6520
+    ],
+    "size": [
+     370,
+     390
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "值",
+      "value": "Bold comic-book ink style, heavy linework, red and blue-black palette, night city. Use <Picture 2> and <Picture 1> as reference frames and <Audio 1> exactly as it is.\nCUT 1: top-down view of the little boy superhero on the rooftop — red cape fluttering in the wind, hands planted on his hips, freckles and a cocky grin as he looks straight up into the camera. The camera slowly descends toward him as he delivers his line — as he speaks, comic-book graphic overlay text word by word in sync with his voice: \"GET READY TO\" - \"MEET\" — \"YOUR\" — \"MAKER\" — huge jagged comic lettering, white with heavy black outlines and red drop shadows, tilted at scrappy angles, until the three words hang stacked in the air above him between his face and the lens.\nTRANSITION: a violent WHIP PAN off the rooftop that SMEARS the floating words away with it, motion-streaked —\nCUT 2: low hero angle on the colossal black mech-kaiju towering over the skyline as it rears back and unleashes a GIANT terrifying ROAR — jaws wide with fangs, red eyes and chest-core flaring blinding bright, blue lightning arcing off its head, the roar's shockwave rippling dust and rattling windows down the buildings, comic-style speed-lines and ink splatter bursting from the impact of the sound. It leans INTO the camera as the roar peaks. Hold on the roar.",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "STRING",
+      "label": "字符串",
+      "type": "STRING"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -700,
+     5960
+    ],
+    "size": [
+     290,
+     330
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "图像",
+      "value": "mecha_dragon_lightning.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "选择文件上传",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "遮罩",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Size Settings Reference",
+    "pos": [
+     -1880,
+     6070
+    ],
+    "size": [
+     300,
+     520
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "| megapixels | Aspect | Output (multiple=32) |\n|---|---|---|\n| 0.2 | 16:9 | 608 x 352 |\n| 0.3 | 16:9 | 736 x 416 |\n| 0.4 | 16:9 | 864 x 480 |\n| 0.5 | 16:9 | 960 x 544 |\n| 0.6 | 16:9 | 1056 x 608 |\n| 0.7 | 16:9 | 1152 x 640 |\n| 0.8 | 16:9 | 1216 x 672 |\n| 0.9 | 16:9 | 1280 x 736 |\n| 0.98 | 16:9 | 1344 x 768 (official 768p) |",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "ComfySwitchNode",
+    "title": "If/Else Switch (model)",
+    "pos": [
+     -730,
+     4940
+    ],
+    "size": [
+     270,
+     110
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "switch",
+      "label": "切换",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "on_false",
+      "label": "为假时",
+      "type": "*"
+     },
+     {
+      "name": "on_true",
+      "label": "为真时",
+      "type": "*"
+     },
+     {
+      "name": "switch",
+      "label": "切换",
+      "type": "BOOLEAN"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output",
+      "label": "输出",
+      "type": "*"
+     }
+    ]
+   },
+   {
+    "type": "ComfySwitchNode",
+    "title": "If/Else Switch (Steps)",
+    "pos": [
+     -390,
+     5110
+    ],
+    "size": [
+     270,
+     110
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "switch",
+      "label": "切换",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "on_false",
+      "label": "为假时",
+      "type": "*"
+     },
+     {
+      "name": "on_true",
+      "label": "为真时",
+      "type": "*"
+     },
+     {
+      "name": "switch",
+      "label": "切换",
+      "type": "BOOLEAN"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output",
+      "label": "输出",
+      "type": "*"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveInt",
+    "title": "Int (Full)",
+    "pos": [
+     -730,
+     5090
+    ],
+    "size": [
+     270,
+     90
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "数值",
+      "value": 20,
+      "disabled": false
+     },
+     {
+      "name": "fixed",
+      "label": "生成后控制",
+      "value": "fixed",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "INT",
+      "label": "整数",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveInt",
+    "title": "Int (Lightning LoRA)",
+    "pos": [
+     -730,
+     5220
+    ],
+    "size": [
+     270,
+     90
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "数值",
+      "value": 4,
+      "disabled": false
+     },
+     {
+      "name": "fixed",
+      "label": "生成后控制",
+      "value": "fixed",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "INT",
+      "label": "整数",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "LoraLoaderModelOnly",
+    "title": "LoRA加载器（仅模型）",
+    "pos": [
+     -1490,
+     5140
+    ],
+    "size": [
+     640,
+     90
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "lora_name",
+      "label": "LoRA名称",
+      "value": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "strength_model",
+      "label": "模型强度",
+      "value": 1,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "model",
+      "label": "模型",
+      "type": "MODEL"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "MODEL",
+      "label": "模型",
+      "type": "MODEL"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveBoolean",
+    "title": "Boolean (Enable Lightning LoRA)",
+    "pos": [
+     -1490,
+     5940
+    ],
+    "size": [
+     270,
+     70
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "值",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "BOOLEAN",
+      "label": "布尔",
+      "type": "BOOLEAN"
+     }
+    ]
+   }
+  ],
+  "mine": [
+   {
+    "type": "MarkdownNote",
+    "title": "Note: MiniMax H3",
+    "pos": [
+     -2030,
+     4850
+    ],
+    "size": [
+     450,
+     890
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## MiniMax H3\n\n[MiniMax H3](https://www.minimax.io/blog/minimax-h3) is MiniMax's general-purpose, omni-modal generation model. It jointly understands text, image, video, and audio, and generates video with **native stereo audio**: voice, sound effects, and music are modeled jointly in a single forward pass, not layered on afterward. Output is up to 2K resolution, 24fps, and up to about 15 seconds.\n\n## ComfyUI links\n- [ComfyUI#15224](https://github.com/Comfy-Org/ComfyUI/pull/15224)\n- [🤗 Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n\n## About this workflow\n\nThis template runs the **reference-to-video (ref2va)** task using the `MiniMaxH3ReferenceToVideo` node. It takes any mix of reference images, videos, and standalone audio, and weaves them into the generation to lock in a character's identity, a style, a motion, a camera move, or a voice.\n\n**Key inputs**\n\n- **ref_images / ref_videos / ref_video_audios / ref_audios**: up to 9 reference images, 3 reference videos (each may carry its own paired soundtrack), and 3 standalone reference audio clips\n- **prompt**: reference the inputs by tag, in the exact order they were connected, for example `<Picture 1>`, `<Video 1>`, `<Audio 1>`, then describe the target scene, motion, and audio\n- **ref_image_size**: `match` scales references down to the generation's resolution (faster); `max` keeps up to a 2048px short edge for stronger identity fidelity, at the cost of speed since reference tokens ride along every sampling step\n- **width / height**: set via Resolution Selector.\n- **duration (seconds)**: converted to a valid frame `length` by the Math Expression node\n\n**Sampling and decode**\n\n- Sampler: `res_multistep`. `beta` or `normal` scheduler tends to outperform `simple` for reference-heavy prompts like this one\n- The sampler's joint audio+video `LATENT` output feeds directly into both `VAEDecode` (video, `minimax_h3_video_vae_int8_convrot`) and `VAEDecodeAudio` (audio, `minimax_h3_audio_vae_fp32`); each decode node automatically pulls its own half out of the packed latent. `CreateVideo` then muxes the two into a single MP4 with synced sound\n- The diffusion model here is `minimax_h3_ref2va_pruned_int8_convrot.safetensors`, a different set of weights from the `fl2va` model used by the t2v/i2v templates\n\nRef2va's output is very sensitive to prompt wording; matching the reference tags precisely and being explicit about which reference drives which part of the shot tends to work best.",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Model Links",
+    "pos": [
+     -2500,
+     4850
+    ],
+    "size": [
+     440,
+     740
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "## Model Links\n[🤗 Comfy-Org/MiniMax-H3](https://huggingface.co/Comfy-Org/MiniMax-H3)\n\n**vae**\n\n- [minimax_h3_video_vae_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_video_vae_int8_convrot.safetensors)\n- [minimax_h3_audio_vae_fp32.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/vae/minimax_h3_audio_vae_fp32.safetensors)\n\n**diffusion_models**\n\n- [minimax_h3_ref2va_pruned_int8_convrot.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/diffusion_models/minimax_h3_ref2va_pruned_int8_convrot.safetensors)\n\n**text_encoders**\n\n- [qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/text_encoders/qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors)\n\n**loras**\n\n- 4 steps: [minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors](https://huggingface.co/Comfy-Org/MiniMax-H3/resolve/main/loras/minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors)\n\n**embeddings**\n\n- [10 style embeddings](https://huggingface.co/Comfy-Org/MiniMax-H3/tree/main/embeddings) (`minimaxh3_*.safetensors`), for example `minimaxh3_art_is_explosion`\n\n## Model Storage Location\n\n```\n📂 ComfyUI/\n├── 📂 models/\n│   ├── 📂 vae/\n│   │   ├── minimax_h3_video_vae_int8_convrot.safetensors\n│   │   └── minimax_h3_audio_vae_fp32.safetensors\n│   ├── 📂 diffusion_models/\n│   │   └── minimax_h3_ref2va_pruned_int8_convrot.safetensors\n│   ├── 📂 text_encoders/\n│   │   └── qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors\n│   ├── 📂 loras/\n│   │   └── minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors\n│   └── 📂 embeddings/\n│       └── minimaxh3_art_is_explosion.safetensors\n```\n\n## Using Prompt Embeddings\n\nPrompt embeddings (supported since [ComfyUI#15697](https://github.com/Comfy-Org/ComfyUI/pull/15697)) add reusable style tokens to your prompt. Download one or more embeddings from the folder above into `ComfyUI/models/embeddings/`, then reference one in the prompt text with the `embedding:` prefix and the filename without its extension, for example:\n\n`embedding:minimaxh3_art_is_explosion`\n\nUsing an embedding is optional and the template runs fine without one.\n\n## Report Issue\n\nNote: Please update ComfyUI first ([guide](https://docs.comfy.org/installation/update_comfyui)) and prepare required models. Desktop/Cloud updates follow stable releases, so some nightly-supported models may not be available yet.\n\n- Cannot run / runtime errors: [ComfyUI/issues](https://github.com/comfyanonymous/ComfyUI/issues)\n- UI / frontend issues: [ComfyUI_frontend/issues](https://github.com/Comfy-Org/ComfyUI_frontend/issues)\n- Workflow issues: [workflow_templates/issues](https://github.com/Comfy-Org/workflow_templates/issues)\n",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "MarkdownNote",
+    "title": "Note: Size Settings Reference",
+    "pos": [
+     -1880,
+     6070
+    ],
+    "size": [
+     300,
+     520
+    ],
+    "color": "#222",
+    "bgcolor": "#000",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "text",
+      "label": "text",
+      "value": "| megapixels | Aspect | Output (multiple=32) |\n|---|---|---|\n| 0.2 | 16:9 | 608 x 352 |\n| 0.3 | 16:9 | 736 x 416 |\n| 0.4 | 16:9 | 864 x 480 |\n| 0.5 | 16:9 | 960 x 544 |\n| 0.6 | 16:9 | 1056 x 608 |\n| 0.7 | 16:9 | 1152 x 640 |\n| 0.8 | 16:9 | 1216 x 672 |\n| 0.9 | 16:9 | 1280 x 736 |\n| 0.98 | 16:9 | 1344 x 768 (official 768p) |",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": []
+   },
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     750,
+     4870
+    ],
+    "size": [
+     1380,
+     970
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "filename_prefix (文件名前缀)",
+      "value": "video/MiniMax_H3",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "format (格式)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "format.codec (编解码器)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "codec (编码器)",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ResolutionSelector",
+    "title": "Resolution Selector (Size)",
+    "pos": [
+     -1490,
+     6060
+    ],
+    "size": [
+     270,
+     170
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "aspect_ratio",
+      "label": "aspect_ratio (宽高比)",
+      "value": "16:9 (Widescreen)",
+      "disabled": false
+     },
+     {
+      "name": "megapixels",
+      "label": "megapixels (百万像素)",
+      "value": 0.4,
+      "disabled": false
+     },
+     {
+      "name": "multiple",
+      "label": "multiple (倍数)",
+      "value": 32,
+      "disabled": false
+     },
+     {
+      "name": "preview",
+      "label": "preview",
+      "value": "",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "VAELoader",
+    "title": "加载VAE",
+    "pos": [
+     -1490,
+     5490
+    ],
+    "size": [
+     640,
+     70
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "vae_name",
+      "label": "vae_name (vae名称)",
+      "value": "minimax_h3_video_vae_int8_convrot.safetensors",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "VAE",
+      "label": "VAE",
+      "type": "VAE"
+     }
+    ]
+   },
+   {
+    "type": "VAELoader",
+    "title": "加载VAE",
+    "pos": [
+     -1490,
+     5630
+    ],
+    "size": [
+     650,
+     70
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "vae_name",
+      "label": "vae_name (vae名称)",
+      "value": "minimax_h3_audio_vae_fp32.safetensors",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "VAE",
+      "label": "VAE",
+      "type": "VAE"
+     }
+    ]
+   },
+   {
+    "type": "VAEDecodeAudio",
+    "title": "VAE解码（音频）",
+    "pos": [
+     20,
+     5750
+    ],
+    "size": [
+     230,
+     60
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "samples",
+      "label": "samples (Latent)",
+      "type": "LATENT"
+     },
+     {
+      "name": "vae",
+      "label": "vae (VAE)",
+      "type": "VAE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "AUDIO",
+      "label": "AUDIO (音频)",
+      "type": "AUDIO"
+     }
+    ]
+   },
+   {
+    "type": "VAEDecode",
+    "title": "VAE解码",
+    "pos": [
+     20,
+     5650
+    ],
+    "size": [
+     230,
+     60
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "samples",
+      "label": "samples (Latent)",
+      "type": "LATENT"
+     },
+     {
+      "name": "vae",
+      "label": "vae (VAE)",
+      "type": "VAE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     }
+    ]
+   },
+   {
+    "type": "KSamplerSelect",
+    "title": "K采样器选择",
+    "pos": [
+     0,
+     5200
+    ],
+    "size": [
+     370,
+     70
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "sampler_name",
+      "label": "sampler_name (采样器名称)",
+      "value": "res_multistep",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "SAMPLER",
+      "label": "SAMPLER (采样器)",
+      "type": "SAMPLER"
+     }
+    ]
+   },
+   {
+    "type": "BasicScheduler",
+    "title": "基本调度器",
+    "pos": [
+     0,
+     5320
+    ],
+    "size": [
+     370,
+     130
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "scheduler",
+      "label": "scheduler (调度器)",
+      "value": "simple",
+      "disabled": false
+     },
+     {
+      "name": "steps",
+      "label": "steps (步数)",
+      "value": 20,
+      "disabled": false
+     },
+     {
+      "name": "denoise",
+      "label": "denoise (降噪)",
+      "value": 1,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "model",
+      "label": "model (模型)",
+      "type": "MODEL"
+     },
+     {
+      "name": "steps",
+      "label": "steps (步数)",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "SIGMAS",
+      "label": "SIGMAS (Sigmas)",
+      "type": "SIGMAS"
+     }
+    ]
+   },
+   {
+    "type": "SamplerCustomAdvanced",
+    "title": "自定义采样器（高级）",
+    "pos": [
+     410,
+     5120
+    ],
+    "size": [
+     230,
+     140
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "noise",
+      "label": "noise (噪波)",
+      "type": "NOISE"
+     },
+     {
+      "name": "guider",
+      "label": "guider (引导器)",
+      "type": "GUIDER"
+     },
+     {
+      "name": "sampler",
+      "label": "sampler (采样器)",
+      "type": "SAMPLER"
+     },
+     {
+      "name": "sigmas",
+      "label": "sigmas (西格玛)",
+      "type": "SIGMAS"
+     },
+     {
+      "name": "latent_image",
+      "label": "latent_image (Latent图像)",
+      "type": "LATENT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output",
+      "label": "output (Latent)",
+      "type": "LATENT"
+     },
+     {
+      "name": "denoised_output",
+      "label": "denoised_output (降噪Latent)",
+      "type": "LATENT"
+     }
+    ]
+   },
+   {
+    "type": "BasicGuider",
+    "title": "基本引导器",
+    "pos": [
+     0,
+     5090
+    ],
+    "size": [
+     360,
+     60
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [],
+    "inputs": [
+     {
+      "name": "model",
+      "label": "model (模型)",
+      "type": "MODEL"
+     },
+     {
+      "name": "conditioning",
+      "label": "conditioning (条件)",
+      "type": "CONDITIONING"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "GUIDER",
+      "label": "GUIDER (引导器)",
+      "type": "GUIDER"
+     }
+    ]
+   },
+   {
+    "type": "UNETLoader",
+    "title": "UNet加载器",
+    "pos": [
+     -1490,
+     4980
+    ],
+    "size": [
+     640,
+     90
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "unet_name",
+      "label": "unet_name (UNet名称)",
+      "value": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "weight_dtype",
+      "label": "weight_dtype (数据类型)",
+      "value": "default",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "MODEL",
+      "label": "MODEL (模型)",
+      "type": "MODEL"
+     }
+    ]
+   },
+   {
+    "type": "CLIPLoader",
+    "title": "加载CLIP",
+    "pos": [
+     -1490,
+     5300
+    ],
+    "size": [
+     640,
+     120
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "clip_name",
+      "label": "clip_name (CLIP名称)",
+      "value": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "type",
+      "label": "type (类型)",
+      "value": "minimax",
+      "disabled": false
+     },
+     {
+      "name": "device",
+      "label": "device (设备)",
+      "value": "default",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "CLIP",
+      "label": "CLIP (文本编码器)",
+      "type": "CLIP"
+     }
+    ]
+   },
+   {
+    "type": "RandomNoise",
+    "title": "随机噪波",
+    "pos": [
+     0,
+     4950
+    ],
+    "size": [
+     360,
+     90
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "noise_seed",
+      "label": "noise_seed (噪波随机种)",
+      "value": 261662374822964,
+      "disabled": false
+     },
+     {
+      "name": "control_after_generate",
+      "label": "control_after_generate (生成后控制)",
+      "value": "randomize",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "NOISE",
+      "label": "NOISE (噪波)",
+      "type": "NOISE"
+     }
+    ]
+   },
+   {
+    "type": "CreateVideo",
+    "title": "创建视频",
+    "pos": [
+     330,
+     5650
+    ],
+    "size": [
+     270,
+     150
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "fps",
+      "label": "fps (帧率)",
+      "value": 24,
+      "disabled": false
+     },
+     {
+      "name": "bit_depth",
+      "label": "bit_depth (位深)",
+      "value": 8,
+      "disabled": false
+     },
+     {
+      "name": "color_space",
+      "label": "color_space (色彩空间)",
+      "value": "sRGB",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "codec (编码器)",
+      "value": "none",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "images",
+      "label": "images (图像)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "audio",
+      "label": "audio (音频)",
+      "type": "AUDIO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "VIDEO (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "ComfyMathExpression",
+    "title": "数学表达式",
+    "pos": [
+     -1490,
+     6440
+    ],
+    "size": [
+     225,
+     74
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "expression",
+      "label": "expression (表达式)",
+      "value": "max(5, round(a * 24)) + (5 - (max(5, round(a * 24)) % 17)) % 17",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "values.a",
+      "label": "a",
+      "type": "FLOAT,INT,BOOLEAN"
+     },
+     {
+      "name": "values.b",
+      "label": "values.b",
+      "type": "FLOAT,INT,BOOLEAN"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "FLOAT",
+      "label": "FLOAT (浮点)",
+      "type": "FLOAT"
+     },
+     {
+      "name": "INT",
+      "label": "INT (整数)",
+      "type": "INT"
+     },
+     {
+      "name": "BOOL",
+      "label": "BOOL (布尔值)",
+      "type": "BOOLEAN"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveFloat",
+    "title": "Float (Duration)",
+    "pos": [
+     -1490,
+     6300
+    ],
+    "size": [
+     270,
+     70
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "value (值)",
+      "value": 5,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "FLOAT",
+      "label": "FLOAT (浮点)",
+      "type": "FLOAT"
+     }
+    ]
+   },
+   {
+    "type": "MiniMaxH3ReferenceToVideo",
+    "title": "MiniMax H3 参考转视频",
+    "pos": [
+     -620,
+     5420
+    ],
+    "size": [
+     400,
+     404
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "prompt",
+      "label": "prompt (提示词)",
+      "value": "",
+      "disabled": false
+     },
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "value": 1344,
+      "disabled": false
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "value": 768,
+      "disabled": false
+     },
+     {
+      "name": "length",
+      "label": "length (长度)",
+      "value": 124,
+      "disabled": false
+     },
+     {
+      "name": "ref_image_size",
+      "label": "ref_image_size (参考图像尺寸)",
+      "value": "match",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "clip",
+      "label": "clip (文本编码器)",
+      "type": "CLIP"
+     },
+     {
+      "name": "vae",
+      "label": "vae (VAE)",
+      "type": "VAE"
+     },
+     {
+      "name": "audio_vae",
+      "label": "audio_vae (音频VAE)",
+      "type": "VAE"
+     },
+     {
+      "name": "ref_images.ref_image_0",
+      "label": "ref_image_0 (参考图像1)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_images.ref_image_1",
+      "label": "ref_images.ref_image_1 (参考图像2)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_images.ref_image_2",
+      "label": "ref_images.ref_image_2 (参考图像3)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_videos.ref_video_0",
+      "label": "ref_video_0 (参考视频1)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "ref_video_audios.ref_video_audio_0",
+      "label": "ref_video_audio_0 (参考视频音频1)",
+      "type": "AUDIO"
+     },
+     {
+      "name": "ref_audios.ref_audio_0",
+      "label": "ref_audio_0 (参考音频1)",
+      "type": "AUDIO"
+     },
+     {
+      "name": "ref_audios.ref_audio_1",
+      "label": "ref_audios.ref_audio_1 (参考音频2)",
+      "type": "AUDIO"
+     },
+     {
+      "name": "ref_audios.ref_audio_2",
+      "label": "ref_audios.ref_audio_2 (参考音频3)",
+      "type": "AUDIO"
+     },
+     {
+      "name": "prompt",
+      "label": "prompt (提示词)",
+      "type": "STRING"
+     },
+     {
+      "name": "width",
+      "label": "width (宽度)",
+      "type": "INT"
+     },
+     {
+      "name": "height",
+      "label": "height (高度)",
+      "type": "INT"
+     },
+     {
+      "name": "length",
+      "label": "length (长度)",
+      "type": "INT"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "positive",
+      "label": "positive (正向)",
+      "type": "CONDITIONING"
+     },
+     {
+      "name": "LATENT",
+      "label": "LATENT (Latent)",
+      "type": "LATENT"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -1050,
+     5960
+    ],
+    "size": [
+     290,
+     330
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "value": "red_superboy_on_city_roof.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "upload (选择文件上传)",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "MASK (遮罩)",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveStringMultiline",
+    "title": "Input Text (Prompt)",
+    "pos": [
+     -1490,
+     6520
+    ],
+    "size": [
+     370,
+     390
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "value (值)",
+      "value": "Bold comic-book ink style, heavy linework, red and blue-black palette, night city. Use <Picture 2> and <Picture 1> as reference frames and <Audio 1> exactly as it is.\nCUT 1: top-down view of the little boy superhero on the rooftop — red cape fluttering in the wind, hands planted on his hips, freckles and a cocky grin as he looks straight up into the camera. The camera slowly descends toward him as he delivers his line — as he speaks, comic-book graphic overlay text word by word in sync with his voice: \"GET READY TO\" - \"MEET\" — \"YOUR\" — \"MAKER\" — huge jagged comic lettering, white with heavy black outlines and red drop shadows, tilted at scrappy angles, until the three words hang stacked in the air above him between his face and the lens.\nTRANSITION: a violent WHIP PAN off the rooftop that SMEARS the floating words away with it, motion-streaked —\nCUT 2: low hero angle on the colossal black mech-kaiju towering over the skyline as it rears back and unleashes a GIANT terrifying ROAR — jaws wide with fangs, red eyes and chest-core flaring blinding bright, blue lightning arcing off its head, the roar's shockwave rippling dust and rattling windows down the buildings, comic-style speed-lines and ink splatter bursting from the impact of the sound. It leans INTO the camera as the roar peaks. Hold on the roar.",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "STRING",
+      "label": "STRING (字符串)",
+      "type": "STRING"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -700,
+     5960
+    ],
+    "size": [
+     290,
+     330
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "value": "mecha_dragon_lightning.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "upload (选择文件上传)",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "MASK (遮罩)",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "ComfySwitchNode",
+    "title": "If/Else Switch (model)",
+    "pos": [
+     -730,
+     4940
+    ],
+    "size": [
+     270,
+     110
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "switch",
+      "label": "switch (切换)",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "on_false",
+      "label": "on_false (为假时)",
+      "type": "MODEL"
+     },
+     {
+      "name": "on_true",
+      "label": "on_true (为真时)",
+      "type": "MODEL"
+     },
+     {
+      "name": "switch",
+      "label": "switch (切换)",
+      "type": "BOOLEAN"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output",
+      "label": "output (输出)",
+      "type": "MODEL"
+     }
+    ]
+   },
+   {
+    "type": "ComfySwitchNode",
+    "title": "If/Else Switch (Steps)",
+    "pos": [
+     -390,
+     5110
+    ],
+    "size": [
+     270,
+     110
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "switch",
+      "label": "switch (切换)",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "on_false",
+      "label": "on_false (为假时)",
+      "type": "INT"
+     },
+     {
+      "name": "on_true",
+      "label": "on_true (为真时)",
+      "type": "INT"
+     },
+     {
+      "name": "switch",
+      "label": "switch (切换)",
+      "type": "BOOLEAN"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "output",
+      "label": "output (输出)",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveInt",
+    "title": "Int (Full)",
+    "pos": [
+     -730,
+     5090
+    ],
+    "size": [
+     270,
+     90
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "value (数值)",
+      "value": 20,
+      "disabled": false
+     },
+     {
+      "name": "fixed",
+      "label": "fixed (生成后控制)",
+      "value": "fixed",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "INT",
+      "label": "INT (整数)",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveInt",
+    "title": "Int (Lightning LoRA)",
+    "pos": [
+     -730,
+     5220
+    ],
+    "size": [
+     270,
+     90
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "value (数值)",
+      "value": 4,
+      "disabled": false
+     },
+     {
+      "name": "fixed",
+      "label": "fixed (生成后控制)",
+      "value": "fixed",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "INT",
+      "label": "INT (整数)",
+      "type": "INT"
+     }
+    ]
+   },
+   {
+    "type": "LoraLoaderModelOnly",
+    "title": "LoRA加载器（仅模型）",
+    "pos": [
+     -1490,
+     5140
+    ],
+    "size": [
+     640,
+     90
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "lora_name",
+      "label": "lora_name (LoRA名称)",
+      "value": "minimax_h3_ref2v_turbo_4step_v0.1_comfyui_bf16.safetensors",
+      "disabled": false
+     },
+     {
+      "name": "strength_model",
+      "label": "strength_model (模型强度)",
+      "value": 1,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "model",
+      "label": "model (模型)",
+      "type": "MODEL"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "MODEL",
+      "label": "MODEL (模型)",
+      "type": "MODEL"
+     }
+    ]
+   },
+   {
+    "type": "PrimitiveBoolean",
+    "title": "Boolean (Enable Lightning LoRA)",
+    "pos": [
+     -1490,
+     5940
+    ],
+    "size": [
+     270,
+     70
+    ],
+    "color": "#322",
+    "bgcolor": "#533",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "value",
+      "label": "value (值)",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "BOOLEAN",
+      "label": "BOOLEAN (布尔)",
+      "type": "BOOLEAN"
+     }
+    ]
+   }
+  ]
+ },
+ "flf": {
+  "comfy": [
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -3730,
+     90
+    ],
+    "size": [
+     290,
+     374
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "图像",
+      "value": "angel-warrior-demon-battle-start.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "选择文件上传",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "遮罩",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -3730,
+     510
+    ],
+    "size": [
+     290,
+     374
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "图像",
+      "value": "angel-warrior-demon-battle-end.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "选择文件上传",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "图像",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "遮罩",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     -2950,
+     90
+    ],
+    "size": [
+     430,
+     150
+    ],
+    "color": null,
+    "bgcolor": null,
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "文件名前缀",
+      "value": "video/MiniMax_H3_flf2v",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "格式",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "编解码器",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "编码器",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "视频",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "MinimaxHailuo03FirstLastFrameNode",
+    "title": "MiniMax H3 首帧-末帧生成视频",
+    "pos": [
+     -3400,
+     90
+    ],
+    "size": [
+     400,
+     287
+    ],
+    "color": "#432",
+    "bgcolor": "#653",
+    "boxcolor": null,
+    "widgets": [
+     {
+      "name": "model",
+      "label": "model",
+      "value": "MiniMax H3",
+      "disabled": false
+     },
+     {
+      "name": "model.prompt",
+      "label": "prompt",
+      "value": "Use Image 1 as the first frame and Image 2 as the last frame.One continuous cinematic fantasy shot. The angel warrior finishes fighting demons in the smoke, then turns and points her spear at the remaining enemies below. End in a triumphant low-angle hero pose. Same character, same style, smooth motion, no cuts, no text.",
+      "disabled": false
+     },
+     {
+      "name": "model.resolution",
+      "label": "resolution",
+      "value": "768P",
+      "disabled": false
+     },
+     {
+      "name": "model.duration",
+      "label": "duration",
+      "value": 5,
+      "disabled": false
+     },
+     {
+      "name": "seed",
+      "label": "seed",
+      "value": 42,
+      "disabled": false
+     },
+     {
+      "name": "control_after_generate",
+      "label": "生成后控制",
+      "value": "randomize",
+      "disabled": false
+     },
+     {
+      "name": "watermark",
+      "label": "watermark",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "first_frame",
+      "label": "first_frame",
+      "type": "IMAGE"
+     },
+     {
+      "name": "last_frame",
+      "label": "last_frame",
+      "type": "IMAGE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "视频",
+      "type": "VIDEO"
+     }
+    ]
+   }
+  ],
+  "mine": [
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -3730,
+     90
+    ],
+    "size": [
+     290,
+     374
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "value": "angel-warrior-demon-battle-start.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "upload (选择文件上传)",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "MASK (遮罩)",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "LoadImage",
+    "title": "加载图像",
+    "pos": [
+     -3730,
+     510
+    ],
+    "size": [
+     290,
+     374
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "image",
+      "label": "image (图像)",
+      "value": "angel-warrior-demon-battle-end.png",
+      "disabled": false
+     },
+     {
+      "name": "upload",
+      "label": "upload (选择文件上传)",
+      "value": "image",
+      "disabled": false
+     }
+    ],
+    "inputs": [],
+    "outputs": [
+     {
+      "name": "IMAGE",
+      "label": "IMAGE (图像)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "MASK",
+      "label": "MASK (遮罩)",
+      "type": "MASK"
+     }
+    ]
+   },
+   {
+    "type": "SaveVideo",
+    "title": "保存视频",
+    "pos": [
+     -2950,
+     90
+    ],
+    "size": [
+     430,
+     150
+    ],
+    "color": "#333",
+    "bgcolor": "#353535",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "filename_prefix",
+      "label": "filename_prefix (文件名前缀)",
+      "value": "video/MiniMax_H3_flf2v",
+      "disabled": false
+     },
+     {
+      "name": "format",
+      "label": "format (格式)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "format.codec",
+      "label": "format.codec (编解码器)",
+      "value": "auto",
+      "disabled": false
+     },
+     {
+      "name": "codec",
+      "label": "codec (编码器)",
+      "value": "auto",
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "video",
+      "label": "video (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   },
+   {
+    "type": "MinimaxHailuo03FirstLastFrameNode",
+    "title": "MiniMax H3 首帧-末帧生成视频",
+    "pos": [
+     -3400,
+     90
+    ],
+    "size": [
+     400,
+     287
+    ],
+    "color": "#432",
+    "bgcolor": "#653",
+    "boxcolor": "#666",
+    "shape": 2,
+    "widgets": [
+     {
+      "name": "model",
+      "label": "model (模型)",
+      "value": "MiniMax H3",
+      "disabled": false
+     },
+     {
+      "name": "model.prompt",
+      "label": "model.prompt (提示词)",
+      "value": "Use Image 1 as the first frame and Image 2 as the last frame.One continuous cinematic fantasy shot. The angel warrior finishes fighting demons in the smoke, then turns and points her spear at the remaining enemies below. End in a triumphant low-angle hero pose. Same character, same style, smooth motion, no cuts, no text.",
+      "disabled": false
+     },
+     {
+      "name": "model.resolution",
+      "label": "model.resolution (分辨率)",
+      "value": "768P",
+      "disabled": false
+     },
+     {
+      "name": "model.duration",
+      "label": "model.duration (时长)",
+      "value": 5,
+      "disabled": false
+     },
+     {
+      "name": "seed",
+      "label": "seed (随机种子)",
+      "value": 42,
+      "disabled": false
+     },
+     {
+      "name": "control_after_generate",
+      "label": "control_after_generate (生成后控制)",
+      "value": "randomize",
+      "disabled": false
+     },
+     {
+      "name": "watermark",
+      "label": "watermark (水印)",
+      "value": false,
+      "disabled": false
+     }
+    ],
+    "inputs": [
+     {
+      "name": "first_frame",
+      "label": "first_frame (首帧)",
+      "type": "IMAGE"
+     },
+     {
+      "name": "last_frame",
+      "label": "last_frame (尾帧)",
+      "type": "IMAGE"
+     }
+    ],
+    "outputs": [
+     {
+      "name": "VIDEO",
+      "label": "VIDEO (视频)",
+      "type": "VIDEO"
+     }
+    ]
+   }
+  ]
+ }
+}
