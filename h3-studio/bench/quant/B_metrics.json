@@ -1,0 +1,26 @@
+{
+ "a": "bench/quant/B_q4.webm",
+ "b": "bench/quant/B_q2.webm",
+ "frames_a": 22,
+ "frames_b": 22,
+ "shape": [
+  480,
+  864,
+  3
+ ],
+ "psnr_mean": 13.017413526237881,
+ "ssim_mean": 0.5276286440923514,
+ "psnr_min": 12.641385683659713,
+ "temporal_a": 9.554449090914655,
+ "temporal_b": 9.72577294453018,
+ "clip_a": {
+  "a man with a black textured crop fade haircut": 0.2864445745944977,
+  "a woman with long curly hair": 0.19937764108181,
+  "a plate of sushi": 0.1625075340270996
+ },
+ "clip_b": {
+  "a man with a black textured crop fade haircut": 0.3153856694698334,
+  "a woman with long curly hair": 0.19558505713939667,
+  "a plate of sushi": 0.1474791318178177
+ }
+}

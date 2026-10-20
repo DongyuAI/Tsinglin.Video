@@ -1,0 +1,134 @@
+{
+ "url": "https://tongyi.aliyun.com/wan/",
+ "slug": "wanxiang",
+ "at": "2026-10-20T11:01:47.700Z",
+ "title": "万相 | 领先的AI视频与图像生成模型",
+ "ready": "complete",
+ "ms": 7176,
+ "lang": "",
+ "finalUrl": "https://tongyi.aliyun.com/wan/",
+ "h1": [],
+ "h2": [],
+ "metas": [
+  [
+   "description",
+   "万相是阿里巴巴通义旗下的AI创意创作平台，旨在通过人工智能技术降低创作门槛，可提供文生图、图生图、文生视频、图生视频、图像编辑等创作场景"
+  ],
+  [
+   "keywords",
+   "万相,通义万相,AIGC,视频生成,图像生成,AI作画,AI绘画,AI视频创作,AI艺术创作,AI生成,图生视频,人工智能"
+  ],
+  [
+   "aplus-rhost-v",
+   "v.aplus.aliyun.com"
+  ],
+  [
+   "aplus-rhost-g",
+   "g.aplus.aliyun.com"
+  ],
+  [
+   "aplus-waiting",
+   "MAN"
+  ],
+  [
+   "aplus-etag-timeout",
+   "400"
+  ],
+  [
+   "aplus-cna-monitor",
+   "on"
+  ],
+  [
+   "aplus-cna-stability",
+   "on"
+  ],
+  [
+   "viewport",
+   "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  ],
+  [
+   "ice-meta-count",
+   "0"
+  ],
+  [
+   "aplus-core",
+   "aplus.js"
+  ],
+  [
+   "aplus-waiting",
+   "MAN"
+  ],
+  [
+   "data-spm",
+   "a2ty03"
+  ],
+  [
+   "referrer",
+   "no-referrer-when-downgrade"
+  ]
+ ],
+ "textLen": 448,
+ "text": "产品特性\n模型开源\nAPI\n立即体验\n创意由你\n尽情释放\n体验\n万相3.0\n原生30秒时长\n更完整叙事能力\n真实感大片\n沉浸式视听体验\n全能创作\n任意模态参考生成\n视频编辑\n精准指令和参考编辑\n万相3.0能力介绍\n全能创作\n最高支持20个素材参考生成，支持复杂文档和网页解析\n立即体验\n原生30秒时长\n更完整叙事能力，更大创作自由度，支持智能时长功能\n立即体验\n像素级一致性保持\n精准还原和复刻参考细节，面向生产力场景提升交付确定性\n立即体验\n沉浸式视听体验\n真实感、画面质感、音效全面提升，创造更强视听冲击力\n立即体验\n精准视频编辑\n视频编辑更加精准，支持指令和参考编辑，提升创作效率\n立即体验\n万相\n功能一览\n立即生成\n产品定价\n用户指南\n模型开源\n最新成就\nGitHub\nAPI 平台\n平台能力概览\nAPI 接入\n产品政策\n服务协议\n隐私政策\n浙公网安备 33010602009975号\n浙B2-20080101-4\nWan © 2026 Powered by Alibaba Cloud.",
+ "links": [
+  {
+   "t": "浙公网安备 33010602009975号",
+   "h": "https://beian.mps.gov.cn/#/query/webSearch"
+  },
+  {
+   "t": "浙B2-20080101-4",
+   "h": "https://beian.miit.gov.cn/#/Integrated/index"
+  }
+ ],
+ "buttons": [
+  {
+   "t": "立即体验",
+   "disabled": false
+  },
+  {
+   "t": "体验\n万相3.0",
+   "disabled": false
+  },
+  {
+   "t": "原生30秒时长\n更完整叙事能力",
+   "disabled": false
+  },
+  {
+   "t": "真实感大片\n沉浸式视听体验",
+   "disabled": false
+  },
+  {
+   "t": "全能创作\n任意模态参考生成",
+   "disabled": false
+  },
+  {
+   "t": "视频编辑\n精准指令和参考编辑",
+   "disabled": false
+  },
+  {
+   "t": "Unmute video",
+   "disabled": false
+  },
+  {
+   "t": "Unmute video",
+   "disabled": false
+  },
+  {
+   "t": "Unmute video",
+   "disabled": false
+  },
+  {
+   "t": "Unmute video",
+   "disabled": false
+  },
+  {
+   "t": "Unmute video",
+   "disabled": false
+  }
+ ],
+ "files": [],
+ "prices": [],
+ "imgs": 10,
+ "canvases": 0,
+ "videos": 7,
+ "shot": "research/shots/wanxiang.png"
+}

@@ -11,7 +11,7 @@ from fastapi import Body, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 
-from . import config, graph, prompts
+from . import config, graph, prompts, stylist
 from .jobs import jobs
 from .sdsrv import sdsrv
 
@@ -211,6 +211,69 @@ async def get_upload(name: str):
     if not p.is_file():
         raise HTTPException(404, "not found")
     return FileResponse(p, media_type=mimetypes.guess_type(name)[0] or "image/png")
+
+
+# ------------------------------------------------------------- AI 造型间
+@app.get("/api/style/styles")
+async def style_styles():
+    return {
+        "styles": stylist.STYLES,
+        "colors": stylist.COLOR_HINTS,
+        "defaults": {"width": 864, "height": 480, "frames": 22, "steps": 4, "cfg": 1.0},
+        "negative": stylist.BASE_NEGATIVE,
+    }
+
+
+@app.post("/api/style/run")
+async def style_run(body: dict = Body(default={})):
+    style_id = body.get("style_id") or "bob_blunt"
+    portrait = body.get("portrait")
+    if not portrait:
+        raise HTTPException(400, "portrait is required")
+    if not await sdsrv.capabilities():
+        raise HTTPException(503, "sd-server is not running (start it first)")
+
+    refs: list[str] = []
+    for ref in [portrait, body.get("style_ref")]:
+        if not ref:
+            continue
+        uri = stylist.resolve_data_uri(ref)
+        if not uri:
+            raise HTTPException(400, f"image not found: {ref}")
+        refs.append(uri)
+
+    prompt = stylist.build_prompt(
+        style_id, body.get("color", "natural"), body.get("extra", ""),
+        body.get("motion", "slowly turns the head left and right"))
+    payload = stylist.build_payload(
+        prompt=prompt, refs=refs,
+        width=int(body.get("width", 864)), height=int(body.get("height", 480)),
+        frames=int(body.get("frames", 22)), steps=int(body.get("steps", 4)),
+        seed=int(body.get("seed", 42)), cfg=float(body.get("cfg", 1.0)),
+    )
+    meta = {
+        "mode": "ref2va", "feature": "style_studio", "style_id": style_id,
+        "color": body.get("color", "natural"), "n_ref_images": len(refs),
+        "prompt": prompt, "warnings": [],
+    }
+    job = jobs.create(f"style:{style_id}", payload, meta)
+    return job.to_dict()
+
+
+@app.get("/api/style/jobs/{jid}")
+async def style_job(jid: str):
+    job = jobs.get(jid)
+    if not job:
+        raise HTTPException(404, "job not found")
+    return job.to_dict()
+
+
+@app.get("/studio")
+async def studio_page():
+    p = Path(__file__).with_name("studio.html")
+    if not p.is_file():
+        raise HTTPException(404, "studio.html missing")
+    return FileResponse(p, media_type="text/html", headers={"Cache-Control": "no-store"})
 
 
 @app.exception_handler(Exception)

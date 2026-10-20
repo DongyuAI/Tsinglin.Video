@@ -1,0 +1,17 @@
+{
+ "a": "bench/quant/A_q4.webm",
+ "b": "bench/quant/A_q2.webm",
+ "frames_a": 22,
+ "frames_b": 22,
+ "shape": [
+  480,
+  864,
+  3
+ ],
+ "psnr_mean": 13.089625007560102,
+ "ssim_mean": 0.49706059929484625,
+ "psnr_min": 12.615292045398004,
+ "temporal_a": 10.265444997121792,
+ "temporal_b": 5.053785878098667,
+ "clip_error": "ConnectTimeout('[WinError 10060] 由于连接方在一段时间后没有正确答复或连接的主机没有反应，连接尝试失败。')"
+}

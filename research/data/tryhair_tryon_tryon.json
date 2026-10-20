@@ -1,0 +1,104 @@
+{
+ "url": "https://tryhair.ai/",
+ "slug": "tryhair_tryon",
+ "steps": [
+  {
+   "t": "2026-10-20T11:04:09.481Z",
+   "k": "setFile",
+   "v": {
+    "ok": true,
+    "nodeId": 551
+   }
+  },
+  {
+   "t": "2026-10-20T11:04:13.745Z",
+   "k": "click",
+   "v": {
+    "ok": true,
+    "tag": "BUTTON",
+    "text": "Try On"
+   }
+  },
+  {
+   "t": "2026-10-20T11:04:18.747Z",
+   "k": "poll0",
+   "v": {
+    "txt": "l Haircut Simulator\n\nStop guessing. TryHair.ai is the best haircut try on website that lets you visualize 100+ styles instantly. No app download needed.\n\nVirtual Hairstyle Try On\n\nUpload your photo an",
+    "imgs": 8,
+    "dialogs": 1
+   }
+  },
+  {
+   "t": "2026-10-20T11:04:18.747Z",
+   "k": "maybe_done",
+   "v": "r\nFREE\nFREE\nSTYLE & COLOR\nApplies both style & color\nWondering What Hairstyle To Get? Try Our Virtual Haircut Simulator\n\nStop guessing. TryHair.ai is the best haircut try on website that lets you visualize 100+ styles instantly. No app download needed.\n\nVirtual Hairstyle Try On\n\nUpload your photo an"
+  }
+ ],
+ "final": {
+  "url": "https://tryhair.ai/aihairstyle",
+  "txt": "AI Hair Studio\nLogin\nAI Hairstyle Generator & Virtual Hair Try-On\n1\nYOUR PHOTO\nUpload Front Photo\nGenerate Hairstyle\n2\nHAIRSTYLE\nHAIR COLOR\nHAIR DESIGN\nFEMALE\n|\nMALE\nUSA\n|\nASIA\nAll\nWolf Cut\nPixie Cut\nBeach Waves\nBob Cut\nButterfly\nSide Bangs\nShag\nLong Layered Waves\nSTYLE ONLY\nKeeps original hair color\nFREE\nFREE\nSTYLE & COLOR\nApplies both style & color\nWondering What Hairstyle To Get? Try Our Virtual Haircut Simulator\n\nStop guessing. TryHair.ai is the best haircut try on website that lets you visualize 100+ styles instantly. No app download needed.\n\nVirtual Hairstyle Try On\n\nUpload your photo and browse through 100+ trending styles. From Pixie cuts and Curtain bangs to Long wavy layers. Perfect for both women and men.\n\nAI Face Shape Analysis\n\nNot sure what suits you? Our AI analyzes your facial features to determine if you have a Round, Oval, Square, or Heart-shaped face, and recommends hairstyles that perfectly frame your face.\n\nHair Color Changer\n\nExperiment with hair dyes without the damage. Try Blonde, Brunette, Red, Silver, or even trendy Dip Dye styles. See which shade complements your skin tone best.\n\nHaircut Simulators\n\nAlready have a specific cut in mind? Browse focused simulators for Bob cuts, Butterfly layers, Curtains, Textured crops, and more.\n\nExplore by style\nFrequently Asked Questions\nWhat is AI Hair Studio?\n\nAI Hair Studio is an all-in-one virtual makeover platform. It combines an AI Face Shape Detector (to analyze your facial features) with a powerful Hairstyle Simulator. Simply upload a photo to discover your face shape and try on 100+ hairstyles, colors, and cuts instantly—no app download required.\n\nIs this AI hairstyle changer free?\n\nYes! AI Hair Studio offers a free trial for all new users. You can perform face shape analysis and try on selected hairstyles for free. We also offer premium plans for high-definition generation.\n\nHow do I find the best haircut for my face shape?\n\nSimply use our \"Analyze Face Shape\" feature. Upload a front-facing photo, and our AI will detect your face shape (Round, Square, Oval, etc.) and recommend hairstyles.\n\nCan I try on hair colors online?\n\nAbsolutely. Switch to the \"Hair Color\" mode to simulate Platinum Blonde, Red, or Dip Dye styles on your own photo.\n\nWhat are the benefits of AI Hair Studio?\n\n✂️ Zero Risk, High Reward: Experiment with drastic cuts, bold colors, or bangs without touching a single hair on your head. Save money and avoid salon regrets.\n🤖 AI-Powered Precision: Unlike old-school \"sticker\" apps, our generative AI analyzes your face shape to create realistic, blended results that actually look like you.\n✨ Boost Confidence: Finding a style that matches your face shape isn't just about looks—it's about feeling your best. Discover the version of you that shines brightest.\n\nHaircut Simulators\nPrivacy Policy\nTerms of Service\nRefund Policy\nCrunchbase\n© 2026 AI Hair Studio. All rights reserved.\nSupport: contact@tryhair.ai\nOptional cookies help us understand site usage, measure marketing",
+  "imgs": [
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf38.jpg",
+    "w": 290,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf39.jpg",
+    "w": 204,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf40.jpg",
+    "w": 215,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf41.jpg",
+    "w": 226,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf42.jpg",
+    "w": 218,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf43.jpg",
+    "w": 243,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf44.jpg",
+    "w": 232,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf45.jpg",
+    "w": 272,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf46.jpg",
+    "w": 206,
+    "h": 300
+   },
+   {
+    "src": "https://tryhair.ai/img/europe/female/wf48.jpg",
+    "w": 203,
+    "h": 300
+   },
+   {
+    "src": "https://media.theresanaiforthat.com/featured-on-taaft.png?width=600",
+    "w": 600,
+    "h": 125
+   },
+   {
+    "src": "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1059681&theme=light",
+    "w": 250,
+    "h": 54
+   }
+  ],
+  "canvases": 0
+ }
+}

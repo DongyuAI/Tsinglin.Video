@@ -323,6 +323,28 @@ litegraph's one-line *Value* input.
 | POST | `/api/upload` | image inputs (returns a `h3studio:` ref) |
 | GET | `/api/uploads` | uploaded images |
 
+## AI 造型间 (style studio)
+
+`http://127.0.0.1:8199/studio` — a product-facing page on top of the same resident
+engine: upload a portrait (plus an optional reference photo of the target cut),
+pick one of 20 hairstyles and a colour, and H3 **ref2va** renders a short video of
+the *same person* turning their head to show the new cut.
+
+| endpoint | purpose |
+|---|---|
+| `GET /api/style/styles` | 20 hairstyles + colour hints + defaults |
+| `POST /api/style/run` | `{portrait, style_ref?, style_id, color, frames, steps, seed}` → job |
+| `GET /api/style/jobs/{id}` | status / progress / media |
+| `GET /studio` | the single-page UI |
+
+Prompts and the negative prompt live in `backend/app/stylist.py`; the identity lock
+(`identical face, identical facial features`) plus a wig-edge/face-swap negative
+list is what keeps the person recognisable. Measured on this box: 864×480, 22
+frames, 4 steps ≈ **191 s** per clip.
+
+A quantitative evaluation of VRAM, quantisation and the competitive landscape is
+in [`reports/h3-eval-and-market-2026-10.md`](reports/h3-eval-and-market-2026-10.md).
+
 ## Known limits
 
 - sd.cpp exposes prompt → video; the latent space is not handed back to the

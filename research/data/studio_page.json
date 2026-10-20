@@ -1,0 +1,45 @@
+{
+ "url": "http://127.0.0.1:8199/studio",
+ "slug": "studio_page",
+ "at": "2026-10-20T11:41:42.033Z",
+ "title": "AI 造型间 · H3 Studio",
+ "ready": "complete",
+ "ms": 3168,
+ "lang": "zh-CN",
+ "finalUrl": "http://127.0.0.1:8199/studio",
+ "h1": [
+  "AI 造型间"
+ ],
+ "h2": [
+  "1 · 人像",
+  "2 · 发型参考（可选）",
+  "3 · 造型",
+  "结果"
+ ],
+ "metas": [
+  [
+   "viewport",
+   "width=device-width,initial-scale=1"
+  ]
+ ],
+ "textLen": 657,
+ "text": "AI 造型间\nMiniMax-H3 · 参考生视频\n引擎常驻 · [object Object]\n← 回到节点画布\n1 · 人像\n点击上传正脸照\n2 · 发型参考（可选）\n上传目标发型图\n发色\nnatural black hair\nplatinum blonde hair\nchocolate brown hair\nauburn red hair\nash grey hair\ndeep blue dyed hair\ndusty pink dyed hair\n补充\n3 · 造型\n齐肩一刀切\nblunt bob\n法式波波\nfrench bob\n狼尾\nwolf cut\n精灵短发\npixie cut\n八字刘海\ncurtain bangs\n长层次\nlong layers\n姬发式\nhime cut\n碎盖\nshag\n鲻鱼头\nmullet\n波浪中长\nwavy lob\n高马尾\nhigh ponytail\n慵懒丸子头\nmessy bun\n双马尾\ntwin tails\n法式编发\nfrench braid\n纹理寸头\ntextured crop\n侧分背头\nside-part fade\n圆寸\nbuzz cut\n男士丸子头\nman bun\n韩式纹理烫\nkorean perm\n湿发背头\nslicked back\n时长\n22 帧 · ~1s\n40 帧 · ~1.7s\n61 帧 · ~2.5s\n步数\n4（快）\n8\n20（慢）\n尺寸\n864×480\n1280×720\n1920×1080\n种子\n生成造型视频\n等待上传人像\n结果\n尚无结果",
+ "links": [
+  {
+   "t": "← 回到节点画布",
+   "h": "http://127.0.0.1:8199/"
+  }
+ ],
+ "buttons": [
+  {
+   "t": "生成造型视频",
+   "disabled": true
+  }
+ ],
+ "files": [],
+ "prices": [],
+ "imgs": 0,
+ "canvases": 0,
+ "videos": 0,
+ "shot": "research/shots/studio_page.png"
+}

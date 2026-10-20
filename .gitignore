@@ -28,3 +28,11 @@ __pycache__/
 
 # ------------------------------------------------------------------------ node
 node_modules/
+
+# ---------------------------------------------------------------- run artefacts
+h3-studio/*.log
+h3-studio/outputs/
+h3-studio/bench/quant/*.webm
+research/shots/
+research/refs/
+.codebuddy/

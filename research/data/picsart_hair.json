@@ -1,0 +1,57 @@
+{
+ "url": "chrome-error://chromewebdata/",
+ "slug": "picsart_hair",
+ "at": "2026-10-20T10:58:14.453Z",
+ "title": "picsart.com",
+ "ready": "complete",
+ "ms": 27371,
+ "navError": "net::ERR_CONNECTION_TIMED_OUT",
+ "lang": "zh",
+ "finalUrl": "chrome-error://chromewebdata/",
+ "h1": [
+  "无法访问此网站"
+ ],
+ "h2": [],
+ "metas": [
+  [
+   "color-scheme",
+   "light dark"
+  ],
+  [
+   "theme-color",
+   "#fff"
+  ],
+  [
+   "viewport",
+   "width=device-width, initial-scale=1.0,\n                                 maximum-scale=1.0, user-scalable=no"
+  ]
+ ],
+ "textLen": 108,
+ "text": "无法访问此网站\n\npicsart.com 的响应时间过长。\n\n请试试以下办法：\n\n检查网络连接\n检查代理服务器和防火墙\n运行 Windows 网络诊断\nERR_CONNECTION_TIMED_OUT\n重新加载\n详情",
+ "links": [
+  {
+   "t": "检查代理服务器和防火墙",
+   "h": "chrome-error://chromewebdata/#buttons"
+  },
+  {
+   "t": "运行 Windows 网络诊断",
+   "h": "javascript:diagnoseErrors()"
+  }
+ ],
+ "buttons": [
+  {
+   "t": "重新加载",
+   "disabled": false
+  },
+  {
+   "t": "详情",
+   "disabled": false
+  }
+ ],
+ "files": [],
+ "prices": [],
+ "imgs": 2,
+ "canvases": 0,
+ "videos": 0,
+ "shot": "research/shots/picsart_hair.png"
+}

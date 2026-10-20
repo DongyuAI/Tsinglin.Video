@@ -1,0 +1,30 @@
+{"slug":"hairchanger","title":"Try Any Haircut, Color, or Beard | Hairstyle AI","url":"https://hairchanger.ai/","textLen":8476,"files":0}
+{"slug":"seemycut","title":"AI Hairstyle Try-On | See New Hair Before You Cut","url":"https://www.seemycut.com/","textLen":10879,"files":0}
+{"slug":"tryhair","title":"TryHair AI: AI Hairstyle Try-On & Face Shape Analyzer","url":"https://tryhair.ai/","textLen":9882,"files":1}
+{"slug":"beautyplus","title":"Hair Color Try On | AI Hair Color Changer Online Free","url":"https://www.beautyplus.com/ai-hairstyle/hair-color-changer","textLen":6093,"files":1}
+{"slug":"remini","title":"Remini Web | Photo Enhancer","url":"https://app.remini.ai/?utm_source=reminiai&reminiai_funnel=redirect_on_reminiai&v=f8857574-f4ba-4eec-973f-25948b9f5ba3-1792493961270","textLen":1471,"files":1}
+{"slug":"meitu","title":"美图公司","url":"https://www.meitu.com/zh","textLen":524,"files":0}
+{"slug":"xingtu","title":"巨量星图-抖音营销-达人变现-星图营销服务平台","url":"https://www.xingtu.cn/","textLen":1288,"files":0}
+Warning: Detected unsettled top-level await at file:///F:/LLMs/Minimax-H3/research/visit.mjs:43
+  try { out.shot = await p.shot(`research/shots/${slug}.png`); } catch {}
+                   ^
+
+
+
+{"slug":"kling","title":"可灵AI创作台 - AI生成视频与图片","url":"https://klingai.com/app/","textLen":1222,"files":2}
+{"slug":"miaoya","title":"妙鸭相机","url":"https://miaoya.cn/","textLen":662,"files":0}
+{"slug":"wanxiang","title":"万相 | 领先的AI视频与图像生成模型","url":"https://tongyi.aliyun.com/wan/","textLen":448,"files":0}
+{"slug":"hailuo","title":"海螺视频：每个想法都是一部大片","url":"https://hailuoai.com/","textLen":559,"files":1}
+Warning: Detected unsettled top-level await at file:///F:/LLMs/Minimax-H3/research/visit.mjs:43
+  try { out.shot = await p.shot(`research/shots/${slug}.png`); } catch {}
+                   ^
+
+
+
+{"slug":"besthaircut","title":"AI 发型试戴与在线发型预览 | Best-Haircut","url":"https://best-haircut.com/zh","textLen":1667,"files":1}
+{"slug":"hairstyleaichanger","title":"AI Hairstyle Changer | Virtual Try-On Haircut Simulator","url":"https://hairstyleaichanger.com/","textLen":4631,"files":0}
+{"slug":"capcut","title":"CapCut AI Video Editor: Smart Online Video Editing with Advanced AI Tools","url":"https://www.capcut.com/","textLen":9671,"files":0}
+{"slug":"youcam","title":"youcam.com","url":"chrome-error://chromewebdata/","textLen":90,"files":0}
+{"slug":"perfectcorp","title":"玩美移动 – AR&AI虚拟试妆 - 皮肤检测与美妆科技领导者 – 美颜美妆数字化技术SaaS方案","url":"https://www.perfectcorp.com/zh-cn/business","textLen":4422,"files":0}
+{"slug":"veed","title":"www.veed.io","url":"chrome-error://chromewebdata/","textLen":108,"files":0}
+{"slug":"canva","title":"Canva可画_在线设计协作平台_平面设计作图软件_视觉办公套件 - Canva中文官网","url":"https://www.canva.cn/?display-com-option=true","textLen":1177,"files":0}

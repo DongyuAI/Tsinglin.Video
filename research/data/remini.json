@@ -1,0 +1,168 @@
+{
+ "url": "https://app.remini.ai/?utm_source=reminiai&reminiai_funnel=redirect_on_reminiai&v=a576645d-c323-4c1e-bf80-7b1bccd2b219-1792494016435",
+ "slug": "remini",
+ "at": "2026-10-20T11:00:15.369Z",
+ "title": "Remini Web | Photo Enhancer",
+ "ready": "complete",
+ "ms": 6798,
+ "lang": "",
+ "finalUrl": "https://app.remini.ai/?utm_source=reminiai&reminiai_funnel=redirect_on_reminiai&v=a576645d-c323-4c1e-bf80-7b1bccd2b219-1792494016435",
+ "h1": [
+  "AI photo and video enhancer, in one click",
+  "404"
+ ],
+ "h2": [
+  "We use cookies",
+  "This page could not be found.",
+  "Your cookie preferences"
+ ],
+ "metas": [
+  [
+   "viewport",
+   "width=device-width, initial-scale=1"
+  ],
+  [
+   "next-head-count",
+   "7"
+  ],
+  [
+   "viewport",
+   "width=device-width"
+  ],
+  [
+   "next-head-count",
+   "3"
+  ]
+ ],
+ "textLen": 1471,
+ "text": "Help\nLog In / Sign Up\nEnglish\n\nBefore\n\nAfter\n\nNEW\n\nTRY VIDEO ENHANCE\n\nAI photo and video enhancer, in one click\n\nRemini's photo and video enhancer helps you improve, sharpen and unblur your media files instantly.\n\nChoose files\n\nor drop it here\n\nPHOTOS\nVIDEOS\n\nBy continuing, you accept our Terms of Service and acknowledge receipt of our Privacy & Cookie Policy\n\nThis site is protected by hCaptcha and its Privacy Policy and Terms of Service apply.\n\nYour cookie preferencesLaw enforcement\n\nCopyright © AI Creativity S.r.l. | Via Nino Bonnet 10, 20154 Milan, Italy | VAT, tax code, and number of registration with the Milan Monza Brianza Lodi Company Register 13250480962 | REA number MI 2711925 | Contributed capital €10.000,00 | Sole shareholder company subject to the management and coordination of Bending Spoons S.p.A.\n\nRemini Web | Photo Enhancer\n\nWe use cookies\n\nWe use the necessary technical cookies to make our site work. We'd also like to set analytics and profiling cookies to deliver more relevant ads, improve our products and services, and reach more people who may love our products. These will be set only if you accept them.\n\nIf you close this message, we won’t set analytics and profiling cookies, and this won’t limit your browsing experience. You can customize your preferences with the Customize cookies button below. For more information, have a look at our privacy and cookie policy.\n\nAccept all cookies\nCustomize cookies\nContinue without accepting",
+ "links": [
+  {
+   "t": "Help",
+   "h": "https://remini-web.zendesk.com/hc/en-us"
+  },
+  {
+   "t": "Terms of Service",
+   "h": "https://bendingspoons.com/tos.html?app=1470373330"
+  },
+  {
+   "t": "Privacy & Cookie Policy",
+   "h": "https://app.remini.ai/privacy-and-cookie-policy?v=a576645d-c323-4c1e-bf80-7b1bccd2b219-1792494016435"
+  },
+  {
+   "t": "Privacy Policy",
+   "h": "https://www.hcaptcha.com/privacy"
+  },
+  {
+   "t": "Terms of Service",
+   "h": "https://www.hcaptcha.com/terms"
+  },
+  {
+   "t": "Law enforcement",
+   "h": "https://bendingspoons.com/documents/Information%20for%20Law%20Enforcement%20Authorities.pdf"
+  },
+  {
+   "t": "privacy and cookie policy.",
+   "h": "https://app.remini.ai/privacy-and-cookie-policy"
+  },
+  {
+   "t": "For more information, have a look at our privacy and cookie ",
+   "h": "https://app.remini.ai/privacy-and-cookie-policy"
+  }
+ ],
+ "buttons": [
+  {
+   "t": "Log In / Sign Up",
+   "disabled": false
+  },
+  {
+   "t": "English",
+   "disabled": false
+  },
+  {
+   "t": "Choose files\n\nor drop it here\n\nPHOTOS\nVIDEOS\n\nBy c",
+   "disabled": false
+  },
+  {
+   "t": "Your cookie preferences",
+   "disabled": false
+  },
+  {
+   "t": "Accept all cookies",
+   "disabled": false
+  },
+  {
+   "t": "Customize cookies",
+   "disabled": false
+  },
+  {
+   "t": "Continue without accepting",
+   "disabled": false
+  },
+  {
+   "t": "Close",
+   "disabled": false
+  },
+  {
+   "t": "Accept all",
+   "disabled": false
+  },
+  {
+   "t": "See full list of cookies‎",
+   "disabled": false
+  },
+  {
+   "t": "See full list of cookies‎",
+   "disabled": false
+  },
+  {
+   "t": "See full list of cookies‎",
+   "disabled": false
+  },
+  {
+   "t": "Back Button",
+   "disabled": false
+  },
+  {
+   "t": "Filter Icon",
+   "disabled": false
+  },
+  {
+   "t": "Clear",
+   "disabled": false
+  },
+  {
+   "t": "Apply",
+   "disabled": false
+  },
+  {
+   "t": "Cancel",
+   "disabled": false
+  },
+  {
+   "t": "Reject all",
+   "disabled": false
+  },
+  {
+   "t": "Confirm my choices",
+   "disabled": false
+  },
+  {
+   "t": "Open Preferences",
+   "disabled": false
+  }
+ ],
+ "files": [
+  {
+   "accept": "image/*,.heic,.tga,video/*",
+   "multiple": false,
+   "name": "",
+   "id": "uploader-file-input-home"
+  }
+ ],
+ "prices": [],
+ "imgs": 12,
+ "canvases": 1,
+ "videos": 0,
+ "shot": "research/shots/remini.png"
+}
