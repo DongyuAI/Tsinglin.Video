@@ -12,10 +12,15 @@
 # DLLs, exes and embedded Python. Both are downloaded, not written here.
 ComfyUI_windows_portable/
 stable-diffusion.cpp/
+comfy-gguf-libs/
+models/
+Qwen-Image-2.1-Turbo/
 
 # ------------------------------------------------------------ build artefacts
 *.zip
 *.7z
+h3-studio/frontend/dist/
+h3-studio/frontend/.astro/
 
 # ---------------------------------------------------------------------- editor
 .idea/
@@ -30,9 +35,16 @@ __pycache__/
 node_modules/
 
 # ---------------------------------------------------------------- run artefacts
-h3-studio/*.log
+*.log
 h3-studio/outputs/
 h3-studio/bench/quant/*.webm
+h3-studio/bench/lookbook_raw/
+h3-studio/backend/app/lookbook/candidates/
 research/shots/
 research/refs/
 .codebuddy/
+
+# --------------------------------------------------------------------- scratch
+# Throwaway scripts, contact sheets and probe output. Nothing here is needed to
+# rebuild the product; see h3-studio/tools/ for the pipeline that is.
+temp/

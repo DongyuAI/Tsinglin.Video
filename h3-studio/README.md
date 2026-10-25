@@ -1,5 +1,8 @@
 # H3 Studio
 
+> 发型目录（50 款）、样片出图管线与整体架构见仓库根目录 [README.md](../README.md)。
+> 本篇只讲 ComfyUI 风格前端与 sd.cpp 引擎这一层。
+
 A ComfyUI-faithful web front-end for **MiniMax-H3** running on
 [`stable-diffusion.cpp`](https://github.com/leejet/stable-diffusion.cpp) — with the
 model kept **resident** in an `sd-server.exe` process, so a generation never pays

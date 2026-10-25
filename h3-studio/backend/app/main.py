@@ -9,7 +9,8 @@ from pathlib import Path
 
 from fastapi import Body, FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import (FileResponse, HTMLResponse, JSONResponse,
+                               RedirectResponse, Response)
 
 from . import config, graph, prompts, stylist
 from .jobs import jobs
@@ -244,7 +245,7 @@ async def style_run(body: dict = Body(default={})):
 
     prompt = stylist.build_prompt(
         style_id, body.get("color", "natural"), body.get("extra", ""),
-        body.get("motion", "slowly turns the head left and right"))
+        body.get("motion", "头部慢慢向左向右转，展示正面、侧面和四分之三侧脸"))
     payload = stylist.build_payload(
         prompt=prompt, refs=refs,
         width=int(body.get("width", 864)), height=int(body.get("height", 480)),
@@ -266,6 +267,59 @@ async def style_job(jid: str):
     if not job:
         raise HTTPException(404, "job not found")
     return job.to_dict()
+
+
+@app.get("/lookbook/{name}")
+async def lookbook(name: str):
+    if "/" in name or "\\" in name or ".." in name:
+        raise HTTPException(400, "bad name")
+    p = Path(__file__).with_name("lookbook") / name
+    if not p.is_file():
+        raise HTTPException(404, "not found")
+    return FileResponse(p, media_type=mimetypes.guess_type(name)[0] or "image/jpeg",
+                        headers={"Cache-Control": "public, max-age=86400"})
+
+
+@app.get("/manifest.webmanifest")
+async def manifest():
+    p = Path(__file__).with_name("manifest.webmanifest")
+    return FileResponse(p, media_type="application/manifest+json")
+
+
+@app.get("/")
+async def root():
+    return RedirectResponse("/studio", status_code=307)
+
+
+@app.get("/style/{sid}")
+async def style_page(sid: str):
+    st = stylist.get_style(sid)
+    if not st:
+        raise HTTPException(404, "unknown style")
+    from . import seo
+    return HTMLResponse(seo.page(st), headers={"Cache-Control": "public, max-age=600"})
+
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    base = "http://127.0.0.1:8199"
+    urls = [f"{base}/studio"] + [f"{base}/style/{s['id']}" for s in stylist.STYLES]
+    body = ('<?xml version="1.0" encoding="UTF-8"?>'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+            + "".join(f"<url><loc>{u}</loc><changefreq>weekly</changefreq></url>" for u in urls)
+            + "</urlset>")
+    return Response(body, media_type="application/xml")
+
+
+@app.get("/robots.txt")
+async def robots():
+    body = "\n".join([
+        "User-agent: *",
+        "Allow: /",
+        "Sitemap: http://127.0.0.1:8199/sitemap.xml",
+        "",
+    ])
+    return Response(body, media_type="text/plain")
 
 
 @app.get("/studio")

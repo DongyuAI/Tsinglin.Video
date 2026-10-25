@@ -1,0 +1,11 @@
+import { openPage, sleep } from './cdp.mjs';
+const page = await openPage();
+await page.send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
+await page.goto('http://127.0.0.1:8199/studio', { wait: 1200 });
+const errs = [];
+page.events.length = 0;
+await page.eval("window.__errs=[];window.addEventListener('error',e=>__errs.push(String(e.message)));1");
+await sleep(800);
+const audit = await page.eval("(()=>{const d=document.documentElement;const tiles=[...document.querySelectorAll('.look')];const r=tiles[0]?.getBoundingClientRect();const bar=document.querySelector('.bar')?.getBoundingClientRect();const h1=document.querySelector('h1')?.getBoundingClientRect();return {scrollW:d.scrollWidth, clientW:d.clientWidth, overflowX:d.scrollWidth>d.clientWidth, tiles:tiles.length, tileW:Math.round(r?.width||0), tileH:Math.round(r?.height||0), gridCols:getComputedStyle(document.querySelector('.grid')).gridTemplateColumns, h1Font:getComputedStyle(document.querySelector('h1')).fontSize, barBottom:Math.round(bar?.bottom||0), barH:Math.round(bar?.height||0), colors:document.querySelectorAll('.col').length, errs:window.__errs};})()");
+console.log(JSON.stringify(audit));
+page.close(); process.exit(0);

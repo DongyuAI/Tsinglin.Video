@@ -14,6 +14,7 @@ if not exist "%PY%" (
   echo         %PY%
   echo         Set the path manually or run the backend with another Python.
   pause
+  jx
   exit /b 1
 )
 

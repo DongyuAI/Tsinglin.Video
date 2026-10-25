@@ -2,175 +2,348 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>AI 造型间 · H3 Studio</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>发型先看 · 上传自拍，先看自己换 20 款发型的效果</title>
+<meta name="description" content="不用注册、不用懂 AI。上传一张自拍，选一款发型，1–3 分钟生成你换发型后的真实视频效果。短发、狼尾、法式波波、八字刘海、男士碎盖等 20 款，先看效果再进理发店。" />
+<meta name="keywords" content="AI换发型,发型试戴,虚拟发型,剪发前看效果,AI发型设计,狼尾,法式波波,八字刘海" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="发型先看 · 先看效果，再剪头发" />
+<meta property="og:description" content="上传一张自拍，30 秒看到你换 20 款发型的样子。不用注册，照片只在本机处理。" />
+<meta property="og:image" content="/lookbook/french_bob.jpg" />
+<meta property="og:image:width" content="640" />
+<meta property="og:image:height" content="960" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#0f0d0b" />
+<link rel="canonical" href="/studio" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="/lookbook/french_bob.jpg" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="发型先看" />
 <style>
-  :root { --bg:#141414; --panel:#1e1e1e; --line:#333; --text:#ddd; --dim:#888; --accent:#6ea8fe; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--text); font:14px/1.5 system-ui,"Segoe UI","PingFang SC",sans-serif; }
-  header { display:flex; align-items:center; gap:12px; padding:14px 22px; border-bottom:1px solid var(--line); }
-  header h1 { font-size:16px; margin:0; font-weight:600; letter-spacing:.02em; }
-  header .tag { font-size:11px; color:var(--dim); border:1px solid var(--line); border-radius:10px; padding:1px 8px; }
-  header a { margin-left:auto; color:var(--dim); text-decoration:none; font-size:12px; }
-  main { display:grid; grid-template-columns: 380px 1fr 420px; gap:18px; padding:18px 22px; align-items:start; }
-  .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; padding:14px; }
-  .card h2 { font-size:12px; color:var(--dim); font-weight:600; letter-spacing:.08em; margin:0 0 10px; text-transform:uppercase; }
-  .drop { border:1px dashed #444; border-radius:8px; height:180px; display:flex; flex-direction:column; align-items:center; justify-content:center;
-          gap:6px; color:var(--dim); cursor:pointer; overflow:hidden; position:relative; }
-  .drop.small { height:110px; }
-  .drop img { width:100%; height:100%; object-fit:cover; position:absolute; inset:0; }
-  .drop span { position:relative; z-index:1; background:rgba(0,0,0,.55); padding:2px 8px; border-radius:6px; }
-  .styles { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; max-height:320px; overflow:auto; }
-  .style { border:1px solid var(--line); border-radius:7px; padding:8px 6px; text-align:center; cursor:pointer; font-size:12px; color:#bbb; }
-  .style:hover { border-color:#555; }
-  .style.on { border-color:var(--accent); color:#fff; background:#22304a; }
-  .style small { display:block; color:var(--dim); font-size:10px; }
-  .row { display:flex; gap:8px; align-items:center; margin-top:10px; }
-  .row label { color:var(--dim); font-size:12px; width:64px; }
-  input[type=text], input[type=number], select, textarea { background:#161616; border:1px solid var(--line); color:var(--text);
-    border-radius:6px; padding:6px 8px; font:inherit; width:100%; }
-  textarea { resize:vertical; min-height:56px; }
-  button.primary { margin-top:14px; width:100%; padding:10px; border-radius:8px; border:0; background:var(--accent); color:#08111f;
-    font-weight:700; cursor:pointer; font-size:14px; }
-  button.primary:disabled { background:#2c3a52; color:#7d8ba3; cursor:not-allowed; }
-  .bar { height:4px; background:#262626; border-radius:2px; overflow:hidden; margin-top:12px; }
-  .bar > i { display:block; height:100%; width:0; background:var(--accent); transition:width .4s; }
-  .result { aspect-ratio:16/9; background:#0d0d0d; border-radius:8px; overflow:hidden; display:flex; align-items:center; justify-content:center; }
-  .result video, .result img { width:100%; height:100%; object-fit:contain; }
-  .muted { color:var(--dim); font-size:12px; }
-  pre { white-space:pre-wrap; word-break:break-word; color:#9fb3d1; font-size:11px; background:#111; border:1px solid var(--line);
-        border-radius:6px; padding:8px; max-height:150px; overflow:auto; }
-  .badge { display:inline-block; font-size:11px; padding:1px 7px; border-radius:9px; border:1px solid var(--line); color:var(--dim); }
+  :root{
+    --ink:#141110; --ink-2:#3d3733; --muted:#8a8079; --line:#e8e1d8;
+    --paper:#fbf8f3; --card:#ffffff; --accent:#b4472f; --accent-2:#8f3524;
+    --gold:#c9a227; --radius:18px; --shadow:0 12px 40px rgba(20,17,16,.10);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--paper);color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans SC","Segoe UI",sans-serif;
+    -webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:520px;margin:0 auto;padding:0 18px 120px}
+  /* header */
+  header{position:sticky;top:0;z-index:30;backdrop-filter:blur(14px);
+    background:rgba(251,248,243,.86);border-bottom:1px solid var(--line)}
+  .nav{max-width:520px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:10px}
+  .logo{font-weight:800;letter-spacing:.02em;font-size:17px}
+  .logo i{color:var(--accent);font-style:normal}
+  .nav .sp{flex:1}
+  .nav .tag{font-size:11px;color:var(--muted);border:1px solid var(--line);
+    border-radius:999px;padding:3px 9px;background:#fff}
+  /* hero */
+  .hero{padding:26px 0 8px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;color:var(--accent);font-weight:700;text-transform:uppercase}
+  h1{font-size:34px;line-height:1.18;margin:10px 0 10px;letter-spacing:-.02em;font-weight:900}
+  h1 em{font-style:normal;background:linear-gradient(180deg,transparent 62%,rgba(201,162,39,.38) 62%)}
+  .sub{color:var(--ink-2);font-size:15px;margin:0 0 18px}
+  .cta{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
+    background:var(--accent);color:#fff;border:0;border-radius:999px;padding:16px 20px;
+    font-size:16px;font-weight:800;box-shadow:0 10px 26px rgba(180,71,47,.28);cursor:pointer}
+  .cta:active{transform:translateY(1px)}
+  .cta.ghost{background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+  .trust{display:flex;gap:14px;margin:14px 0 4px;color:var(--muted);font-size:12px;flex-wrap:wrap}
+  .trust b{color:var(--ink);font-weight:700}
+  /* before / after */
+  .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .ba-grid figure{margin:0;position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4;background:#e9e2d8}
+  .ba-grid img{width:100%;height:100%;object-fit:cover}
+  .ba-grid figcaption{position:absolute;left:9px;bottom:9px;background:rgba(0,0,0,.55);color:#fff;
+    font-size:11px;padding:3px 9px;border-radius:999px}
+  /* lookbook */
+  section{margin-top:30px}
+  .sec-head{display:flex;align-items:baseline;gap:10px;margin-bottom:12px}
+  h2{font-size:20px;margin:0;font-weight:800;letter-spacing:-.01em}
+  .sec-head span{color:var(--muted);font-size:12px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .look{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:3/4;background:#e9e2d8;cursor:pointer;
+    border:2px solid transparent;transition:border-color .15s,transform .15s}
+  .look img{width:100%;height:100%;object-fit:cover}
+  .look:active{transform:scale(.985)}
+  .look.on{border-color:var(--accent)}
+  .look .name{position:absolute;left:0;right:0;bottom:0;padding:18px 8px 7px;color:#fff;font-size:12px;font-weight:700;
+    background:linear-gradient(transparent,rgba(0,0,0,.72))}
+  .look .pick{position:absolute;top:7px;right:7px;width:20px;height:20px;border-radius:50%;
+    background:rgba(255,255,255,.9);display:none;align-items:center;justify-content:center;font-size:12px;color:var(--accent)}
+  .look.on .pick{display:flex}
+  /* colour */
+  .colors{display:flex;gap:9px;margin:14px 0 0;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+  .colors::-webkit-scrollbar{display:none}
+  .col{flex:0 0 auto;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;
+    font-size:11px;color:var(--muted)}
+  .col i{width:30px;height:30px;border-radius:50%;display:block;border:2px solid transparent;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.10)}
+  .col.on i{border-color:var(--ink)}
+  .col.on{color:var(--ink);font-weight:700}
+  /* history strip */
+  .strip{display:flex;gap:9px;overflow-x:auto;margin-top:12px;scrollbar-width:none}
+  .strip::-webkit-scrollbar{display:none}
+  .shot{flex:0 0 74px;cursor:pointer}
+  .shot video{width:74px;height:99px;object-fit:cover;border-radius:10px;background:#000;display:block}
+  .shot span{display:block;font-size:11px;color:var(--muted);text-align:center;margin-top:4px}
+  /* upload */
+  .drop{border:1.5px dashed #d8cec1;border-radius:var(--radius);background:#fff;
+    padding:22px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;text-align:center}
+  .drop .ic{width:44px;height:44px;border-radius:50%;background:#f6efe6;display:flex;align-items:center;
+    justify-content:center;font-size:20px}
+  .drop b{font-size:15px}
+  .drop small{color:var(--muted);font-size:12px}
+  .preview{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:3/4;background:#000}
+  .preview video,.preview img{width:100%;height:100%;object-fit:cover}
+  .preview .badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.55);color:#fff;
+    font-size:11px;padding:4px 9px;border-radius:999px}
+  /* steps */
+  .steps{display:flex;gap:8px;margin:16px 0 0}
+  .step{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .step b{display:block;font-size:12px;color:var(--accent)}
+  .step span{font-size:12px;color:var(--ink-2)}
+  /* sticky bar */
+  .bar{position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 18px calc(10px + env(safe-area-inset-bottom));
+    background:linear-gradient(transparent,rgba(251,248,243,.96) 26%)}
+  .bar .inner{max-width:520px;margin:0 auto;display:flex;gap:10px}
+  .bar .cta{box-shadow:0 8px 24px rgba(180,71,47,.3)}
+  .bar .price{font-size:11px;color:var(--muted);text-align:center;margin-top:6px}
+  /* progress */
+  .prog{height:3px;background:#eee5da;border-radius:2px;overflow:hidden;margin-top:12px}
+  .prog i{display:block;height:100%;width:0;background:var(--accent);transition:width .5s}
+  .status{font-size:12px;color:var(--muted);margin-top:8px;text-align:center}
+  /* faq */
+  details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+  summary{font-weight:700;font-size:14px;cursor:pointer;list-style:none}
+  summary::-webkit-details-marker{display:none}
+  details p{margin:8px 0 0;color:var(--ink-2);font-size:13px}
+  .allnav{display:flex;flex-wrap:wrap;gap:6px 12px;margin:30px 0 0;padding-top:16px;border-top:1px solid var(--line)}
+  .allnav a{color:var(--muted);font-size:12px;text-decoration:none}
+  .allnav a:hover{color:var(--accent)}
+  footer{color:var(--muted);font-size:11px;text-align:center;margin:20px 0 0;line-height:1.8}
+  .toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#141110;color:#fff;
+    padding:9px 14px;border-radius:999px;font-size:12px;z-index:60;opacity:0;pointer-events:none;transition:opacity .2s}
+  .toast.on{opacity:1}
+  @media(min-width:900px){
+    .wrap{max-width:1080px;padding:0 32px 80px}
+    .nav{max-width:1080px}
+    .hero{padding:44px 0 10px;max-width:640px}
+    h1{font-size:46px}
+    .desk{display:grid;grid-template-columns:1.25fr .85fr;gap:36px;align-items:start;margin-top:18px}
+    .grid{grid-template-columns:repeat(4,1fr)}
+    .bar{position:static;background:none;padding:0;margin-top:18px}
+    .bar .cta{max-width:320px}
+  }
 </style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"发型先看",
+"applicationCategory":"LifestyleApplication","operatingSystem":"Web",
+"description":"上传自拍，30 秒生成换发型后的视频效果，支持 20 款男女发型。",
+"offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"},
+"featureList":["AI 换发型","发型试戴","剪发前预览","本地处理"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"生成的结果像我本人吗？","acceptedAnswer":{"@type":"Answer","text":"模型以你的自拍为身份参考，保留五官、肤色和脸型，只替换发型。正面、光线均匀的自拍效果最好。"}},
+{"@type":"Question","name":"需要多久？","acceptedAnswer":{"@type":"Answer","text":"本机显卡生成，通常 1–3 分钟出一段 1 秒的转头视频。"}},
+{"@type":"Question","name":"收费吗？要注册吗？","acceptedAnswer":{"@type":"Answer","text":"不收费、不需要注册，打开网页就能用。"}},
+{"@type":"Question","name":"照片会上传到哪里？","acceptedAnswer":{"@type":"Answer","text":"照片只在本机推理服务里处理，不上传云端、不用于训练。"}}]}
+</script>
 </head>
 <body>
+
 <header>
-  <h1>AI 造型间</h1>
-  <span class="tag">MiniMax-H3 · 参考生视频</span>
-  <span class="tag" id="engine">引擎检测中…</span>
-  <a href="/">← 回到节点画布</a>
+  <div class="nav">
+    <div class="logo">发型<i>先看</i></div>
+    <div class="sp"></div>
+    <div class="tag" id="engine">本机引擎</div>
+  </div>
 </header>
 
-<main>
-  <section class="card">
-    <h2>1 · 人像</h2>
-    <div class="drop" id="dropPortrait"><span>点击上传正脸照</span></div>
-    <h2 style="margin-top:16px">2 · 发型参考（可选）</h2>
-    <div class="drop small" id="dropStyle"><span>上传目标发型图</span></div>
-    <div class="row"><label>发色</label><select id="color"></select></div>
-    <div class="row"><label>补充</label><input id="extra" type="text" placeholder="例如：保持微笑，暖光" /></div>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">剪之前，先看一眼</div>
+    <h1>先看效果，<br/>再<em>剪头发</em>。</h1>
+    <p class="sub">上传一张自拍，选一款发型，1–3 分钟看到你换上的样子。<br/>不用注册，不用会写提示词，照片只在本机处理。</p>
+    <button class="cta" id="heroCta">上传自拍，免费试 →</button>
+    <div class="trust"><span><b>20</b> 款发型</span><span><b>1–3</b> 分钟</span><span><b>0</b> 元 · 免注册</span></div>
+  </div>
+
+  <section class="ba">
+    <div class="sec-head"><h2>同一张脸，只换发型</h2><span>示例 · AI 生成</span></div>
+    <div class="ba-grid">
+      <figure><img src="/lookbook/_base.png" alt="换发型前的样子" loading="lazy"><figcaption>之前</figcaption></figure>
+      <figure><img src="/lookbook/wolf_short.jpg" alt="换成狼尾之后的样子" loading="lazy"><figcaption>之后</figcaption></figure>
+    </div>
   </section>
 
-  <section class="card">
-    <h2>3 · 造型</h2>
-    <div class="styles" id="styles"></div>
-    <div class="row"><label>时长</label>
-      <select id="frames"><option value="22">22 帧 · ~1s</option><option value="40">40 帧 · ~1.7s</option><option value="61">61 帧 · ~2.5s</option></select>
-      <label style="width:auto">步数</label>
-      <select id="steps"><option value="4">4（快）</option><option value="8">8</option><option value="20">20（慢）</option></select>
+  <div class="desk">
+    <div>
+      <section>
+        <div class="sec-head"><h2>先挑一款</h2><span>点一下选中</span></div>
+        <div class="grid" id="lookbook"></div>
+        <div class="colors" id="colors"></div>
+      </section>
     </div>
-    <div class="row"><label>尺寸</label>
-      <select id="size"><option value="864x480">864×480</option><option value="1280x720">1280×720</option><option value="1920x1080">1920×1080</option></select>
-      <label style="width:auto">种子</label><input id="seed" type="number" value="42" style="width:90px" />
+
+    <div>
+      <section id="uploadSec">
+        <div class="sec-head"><h2>再传一张自拍</h2><span>正面 · 光线均匀</span></div>
+        <input id="file" type="file" accept="image/*" hidden />
+        <div id="drop" class="drop">
+          <div class="ic">📷</div>
+          <b>点击上传自拍</b>
+          <small>JPG / PNG，建议正脸、无遮挡</small>
+        </div>
+        <div class="steps">
+          <div class="step"><b>01</b><span>选发型</span></div>
+          <div class="step"><b>02</b><span>传自拍</span></div>
+          <div class="step"><b>03</b><span>看效果</span></div>
+        </div>
+      </section>
+
+      <section id="resultSec" style="display:none">
+        <div class="sec-head"><h2>你的新发型</h2><span id="resultName"></span></div>
+        <div class="preview" id="preview"><span class="badge">生成中</span></div>
+        <div class="prog"><i id="bar"></i></div>
+        <div class="status" id="status">排队中…</div>
+        <div class="strip" id="strip"></div>
+      </section>
     </div>
-    <button class="primary" id="go" disabled>生成造型视频</button>
-    <div class="bar"><i id="bar"></i></div>
-    <div class="muted" id="status" style="margin-top:8px">等待上传人像</div>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2>常见问题</h2></div>
+    <details open><summary>生成的结果像我本人吗？</summary><p>模型以你的自拍为身份参考，保留五官、肤色和脸型，只替换发型。正脸、光线均匀、不戴帽子的照片最准。</p></details>
+    <details><summary>要多久？</summary><p>本机显卡生成，通常 1–3 分钟出一段 1 秒的转头视频，能看到头发在动、有光泽。</p></details>
+    <details><summary>收费吗？要注册吗？</summary><p>不收费、不需要注册。打开网页、选发型、传照片就行。</p></details>
+    <details><summary>照片会上传到哪里？</summary><p>只在本机推理服务里处理，不上传云端、不用于训练，关掉页面也不会留记录。</p></details>
   </section>
 
-  <section class="card">
-    <h2>结果</h2>
-    <div class="result" id="result"><span class="muted">尚无结果</span></div>
-    <div class="muted" id="meta" style="margin-top:10px"></div>
-    <pre id="prompt" hidden></pre>
-  </section>
-</main>
+  <nav class="allnav" id="allStyles"></nav>
+  <footer>发型先看 · 本机 AI 造型实验<br/>示例图为 AI 生成，非真实人物</footer>
+</div>
+
+<div class="bar">
+  <div class="inner">
+    <button class="cta" id="mainCta" disabled>选一款发型开始</button>
+  </div>
+  <div class="price">免注册 · 本机生成 · 不上传云端</div>
+</div>
+
+<div class="toast" id="toast"></div>
 
 <script>
 const $ = (s) => document.querySelector(s);
-const state = { portrait:null, styleRef:null, styleId:'bob_blunt', job:null, timer:null };
+const state = { styleId:null, styleName:'', color:'natural', portrait:null, job:null, timer:null, results:[] };
+const COLORS = [
+  ['natural','自然黑','#191310'], ['chocolate','巧克力','#4a2c1d'], ['auburn','红棕','#7b3a24'],
+  ['ash','冷灰','#8d8880'], ['platinum','白金','#e6d8bd'], ['blue','深蓝','#1f2b45'], ['pink','雾粉','#c98f92']
+];
+const toast = (m) => { const t=$('#toast'); t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),1800); };
 
-async function engine() {
-  try {
-    const r = await (await fetch('/api/health')).json();
-    const ok = r.sd_server?.running;
-    const m = r.sd_server?.model;
-    const name = typeof m === 'string' ? m : (m?.name || 'H3');
-    $('#engine').textContent = ok ? '引擎常驻 · ' + name : '引擎未启动';
-  } catch { $('#engine').textContent = '后端不可达'; }
+fetch('/api/health').then(r=>r.json()).then(d=>{
+  const m = d.sd_server?.model; const name = typeof m==='string'?m:(m?.name||'');
+  $('#engine').textContent = d.sd_server?.running ? '本机引擎 · 就绪' : '引擎未启动';
+}).catch(()=>{});
+
+function label(){
+  const c = COLORS.find(x=>x[0]===state.color);
+  const s = state.styleName ? '「'+state.styleName+'」' : '';
+  return s + (c && state.color!=='natural' ? '·'+c[1] : '');
 }
-engine();
 
-async function loadStyles() {
-  const d = await (await fetch('/api/style/styles')).json();
-  $('#styles').innerHTML = d.styles.map(s =>
-    `<div class="style ${s.id===state.styleId?'on':''}" data-id="${s.id}">${s.zh}<small>${s.en}</small></div>`).join('');
-  document.querySelectorAll('.style').forEach(el => el.onclick = () => {
-    state.styleId = el.dataset.id;
-    document.querySelectorAll('.style').forEach(x => x.classList.toggle('on', x === el));
+fetch('/api/style/styles').then(r=>r.json()).then(d=>{
+  const box = $('#lookbook');
+  box.innerHTML = d.styles.map(s => `
+    <div class="look" data-id="${s.id}" data-name="${s.zh}">
+      <img src="/lookbook/${s.id}.jpg" alt="${s.zh} ${s.en} 发型效果参考" loading="lazy"
+           onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(160deg,#efe6da,#d9c9b8)'">
+      <div class="name">${s.zh}</div><div class="pick">✓</div>
+    </div>`).join('');
+  const want = new URLSearchParams(location.search).get('style');
+  box.querySelectorAll('.look').forEach(el => el.onclick = () => {
+    state.styleId = el.dataset.id; state.styleName = el.dataset.name;
+    box.querySelectorAll('.look').forEach(x => x.classList.toggle('on', x===el));
+    $('#mainCta').disabled = false;
+    $('#mainCta').textContent = state.portrait ? '生成'+label()+'效果' : '已选'+label()+'，上传自拍';
+    if (!state.portrait) $('#uploadSec').scrollIntoView({behavior:'smooth',block:'center'});
   });
-  $('#color').innerHTML = Object.entries(d.colors).map(([k,v]) => `<option value="${k}">${v}</option>`).join('');
-  $('#frames').value = String(d.defaults.frames);
-  $('#steps').value = String(d.defaults.steps);
+  if (want) box.querySelector('.look[data-id="'+want+'"]')?.click();
+  $('#allStyles').innerHTML = d.styles.map(s=>`<a href="/style/${s.id}">${s.zh}</a>`).join('');
+});
+
+$('#colors').innerHTML = COLORS.map(([id,zh,hex]) =>
+  `<div class="col ${id==='natural'?'on':''}" data-c="${id}"><i style="background:${hex}"></i>${zh}</div>`).join('');
+$('#colors').querySelectorAll('.col').forEach(el => el.onclick = () => {
+  state.color = el.dataset.c;
+  $('#colors').querySelectorAll('.col').forEach(x => x.classList.toggle('on', x===el));
+  if (state.styleId) $('#mainCta').textContent = (state.portrait?'生成':'已选')+label()+(state.portrait?'效果':'，上传自拍');
+});
+
+function pickFile(){ $('#file').click(); }
+$('#file').onchange = (e) => { const f = e.target.files[0]; if (f) upload(f); };
+$('#drop').onclick = pickFile;
+$('#heroCta').onclick = () => { if(!state.styleId) { $('#lookbook').scrollIntoView({behavior:'smooth'}); toast('先挑一款发型'); } else pickFile(); };
+$('#mainCta').onclick = () => { if(!state.styleId) { $('#lookbook').scrollIntoView({behavior:'smooth'}); return toast('先挑一款发型'); } if(!state.portrait) return pickFile(); run(); };
+
+async function upload(file){
+  const fd=new FormData(); fd.append('file',file);
+  const r=await (await fetch('/api/upload',{method:'POST',body:fd})).json();
+  if(!r.ok) return toast('上传失败，换一张试试');
+  state.portrait=r.ref;
+  $('#drop').outerHTML = `<div class="preview" id="drop"><img src="${r.url}" alt="你的自拍"/><span class="badge">你的自拍 · 点击更换</span></div>`;
+  $('#drop').onclick = pickFile;
+  $('#mainCta').disabled=false;
+  $('#mainCta').textContent = state.styleId ? '生成'+label()+'效果' : '再挑一款发型';
+  toast('照片已就绪');
+  if (state.styleId) run(); else $('#lookbook').scrollIntoView({behavior:'smooth',block:'center'});
 }
-loadStyles();
 
-async function upload(file, which) {
-  const fd = new FormData(); fd.append('file', file);
-  const r = await (await fetch('/api/upload', { method:'POST', body:fd })).json();
-  if (!r.ok) { alert('上传失败'); return; }
-  state[which] = r.ref;
-  const box = which === 'portrait' ? $('#dropPortrait') : $('#dropStyle');
-  box.innerHTML = `<img src="${r.url}" alt="" /><span>${which==='portrait'?'已上传人像':'已上传发型参考'}</span>`;
-  $('#go').disabled = !state.portrait;
-  $('#status').textContent = state.portrait ? '就绪，可以生成' : '等待上传人像';
+async function run(){
+  $('#resultSec').style.display='block';
+  $('#resultSec').scrollIntoView({behavior:'smooth',block:'center'});
+  $('#preview').innerHTML='<span class="badge">生成中</span>';
+  $('#bar').style.width='3%'; $('#status').textContent='排队中…';
+  $('#mainCta').disabled=true; $('#mainCta').textContent='生成中…';
+  const body={portrait:state.portrait, style_id:state.styleId, color:state.color, frames:22, steps:4, width:640, height:960, seed:Math.floor(Math.random()*100000)};
+  const j=await (await fetch('/api/style/run',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})).json();
+  if(j.error){ $('#status').textContent='失败：'+j.error; $('#mainCta').disabled=false; return; }
+  state.job=j.id; poll();
 }
 
-$('#dropPortrait').onclick = () => pick('portrait');
-$('#dropStyle').onclick = () => pick('styleRef');
-function pick(which) {
-  const i = document.createElement('input'); i.type='file'; i.accept='image/*';
-  i.onchange = () => i.files[0] && upload(i.files[0], which);
-  i.click();
-}
-
-$('#go').onclick = async () => {
-  if (!state.portrait) return;
-  $('#go').disabled = true; $('#status').textContent = '排队中…'; $('#bar').style.width = '2%';
-  const [w,h] = $('#size').value.split('x').map(Number);
-  const body = {
-    portrait: state.portrait, style_ref: state.styleRef, style_id: state.styleId,
-    color: $('#color').value, extra: $('#extra').value, width: w, height: h,
-    frames: Number($('#frames').value), steps: Number($('#steps').value), seed: Number($('#seed').value),
-  };
-  const j = await (await fetch('/api/style/run', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) })).json();
-  if (j.error) { $('#status').textContent = '失败：' + j.error; $('#go').disabled = false; return; }
-  state.job = j.id;
-  $('#prompt').hidden = false; $('#prompt').textContent = j.meta.prompt;
-  poll();
-};
-
-async function poll() {
+async function poll(){
   clearTimeout(state.timer);
-  const r = await fetch('/api/style/jobs/' + state.job);
-  if (!r.ok) return;
-  const j = await r.json();
-  const pct = Math.round((j.progress || 0) * 100);
-  $('#bar').style.width = Math.max(2, pct) + '%';
-  $('#status').textContent = `${j.status} · ${pct}% · ${Math.round(j.elapsed)}s`;
-  if (j.status === 'completed' || j.status === 'done') {
-    $('#bar').style.width = '100%';
-    const m = (j.media || [])[0];
-    if (m) {
-      const url = m.url || `/api/files/${j.id}/${m.name}`;
-      $('#result').innerHTML = `<video src="${url}" controls autoplay loop playsinline></video>`;
-      $('#meta').textContent = `${j.meta.style_id} · ${j.meta.color} · ${j.payload.width}×${j.payload.height} · ${j.payload.video_frames} 帧 · ${j.payload.sample_params.sample_steps} 步 · 用时 ${Math.round(j.elapsed)}s`;
+  const r=await fetch('/api/style/jobs/'+state.job); if(!r.ok) return;
+  const j=await r.json(); const pct=Math.round((j.progress||0)*100);
+  $('#bar').style.width=Math.max(3,pct)+'%';
+  $('#status').textContent = j.status==='generating' ? '正在生成，约 1–3 分钟…' : (j.status+' · '+Math.round(j.elapsed)+'s');
+  if(j.status==='completed'||j.status==='done'){
+    $('#bar').style.width='100%';
+    const m=(j.media||[])[0];
+    if(m){ const url=m.url||('/api/files/'+j.id+'/'+m.name);
+      $('#preview').innerHTML=`<video src="${url}" controls autoplay loop playsinline></video><span class="badge">${state.styleName}</span>`;
+      $('#status').innerHTML=`完成 · ${Math.round(j.elapsed)} 秒 · <a href="${url}" download>保存视频</a>`;
+      $('#resultName').textContent=state.styleName;
+      state.results.unshift({url, name:state.styleName});
+      $('#strip').innerHTML = state.results.map((r,i)=>`
+        <div class="shot" data-i="${i}"><video src="${r.url}" muted playsinline preload="metadata"></video><span>${r.name}</span></div>`).join('');
+      $('#strip').querySelectorAll('.shot').forEach(el => el.onclick = () => {
+        const r = state.results[Number(el.dataset.i)];
+        $('#preview').innerHTML=`<video src="${r.url}" controls autoplay loop playsinline></video><span class="badge">${r.name}</span>`;
+        $('#resultName').textContent=r.name;
+      });
     }
-    $('#go').disabled = false;
+    $('#mainCta').disabled=false; $('#mainCta').textContent='换一款再试';
     return;
   }
-  if (j.status === 'failed') { $('#status').textContent = '失败：' + (j.error || '未知'); $('#go').disabled = false; return; }
-  state.timer = setTimeout(poll, 2000);
+  if(j.status==='failed'){ $('#status').textContent='生成失败：'+(j.error||'未知'); $('#mainCta').disabled=false; return; }
+  state.timer=setTimeout(poll,2000);
 }
 </script>
 </body>

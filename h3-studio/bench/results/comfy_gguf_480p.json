@@ -1,0 +1,108 @@
+{
+ "tag": "comfy_gguf_480p",
+ "prompt_id": "15feb47d-9632-431a-b26b-499bb6e04be8",
+ "status": "error",
+ "wall_sec": 2,
+ "idle": [
+  205,
+  294
+ ],
+ "peak": [
+  205,
+  294
+ ],
+ "peak_total": 499,
+ "error": {
+  "prompt_id": "15feb47d-9632-431a-b26b-499bb6e04be8",
+  "node_id": "128",
+  "node_type": "CLIPLoaderGGUF",
+  "executed": [
+   "137",
+   "139",
+   "120",
+   "119"
+  ],
+  "exception_message": "This gguf file is incompatible with llama.cpp!\nConsider using safetensors or a compatible gguf file\n(F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\models\\text_encoders\\qwen3vl_32b_minimax_h3-Q4_K_M.gguf)\n",
+  "exception_type": "ValueError",
+  "traceback": [
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\execution.py\", line 547, in execute\n    output_data, output_ui, has_subgraph, has_pending_tasks = await get_output_data(prompt_id, unique_id, obj, input_data_all, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                                                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\execution.py\", line 352, in get_output_data\n    return_values = await _async_map_node_over_list(prompt_id, unique_id, obj, input_data_all, obj.FUNCTION, allow_interrupt=True, execution_block_cb=execution_block_cb, pre_execute_cb=pre_execute_cb, v3_data=v3_data)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\execution.py\", line 326, in _async_map_node_over_list\n    await process_inputs(input_dict, i)\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\execution.py\", line 314, in process_inputs\n    result = f(**inputs)\n             ^^^^^^^^^^^\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-GGUF\\nodes.py\", line 250, in load_clip\n    return (self.load_patcher([clip_path], clip_type, self.load_data([clip_path])),)\n                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-GGUF\\nodes.py\", line 226, in load_data\n    sd = gguf_clip_loader(p)\n         ^^^^^^^^^^^^^^^^^^^\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-GGUF\\loader.py\", line 471, in gguf_clip_loader\n    sd, extra = gguf_sd_loader(path, is_text_model=True)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+   "  File \"F:\\LLMs\\Minimax-H3\\ComfyUI_windows_portable\\ComfyUI\\custom_nodes\\ComfyUI-GGUF\\loader.py\", line 98, in gguf_sd_loader\n    raise ValueError(f\"This gguf file is incompatible with llama.cpp!\\nConsider using safetensors or a compatible gguf file\\n({path})\")\n"
+  ],
+  "current_inputs": {
+   "clip_name": [
+    "qwen3vl_32b_minimax_h3-Q4_K_M.gguf"
+   ],
+   "type": [
+    "minimax"
+   ]
+  },
+  "current_outputs": [
+   "130",
+   "139",
+   "119",
+   "137",
+   "144",
+   "131",
+   "123",
+   "143",
+   "115",
+   "124",
+   "121",
+   "141",
+   "127",
+   "125",
+   "122",
+   "126",
+   "138",
+   "128",
+   "129",
+   "132",
+   "120",
+   "136",
+   "146",
+   "145",
+   "92",
+   "142"
+  ],
+  "timestamp": 1792498416746
+ },
+ "outputs": {},
+ "trace": [
+  [
+   362,
+   205,
+   294
+  ],
+  [
+   712,
+   205,
+   294
+  ],
+  [
+   1029,
+   205,
+   294
+  ],
+  [
+   1268,
+   205,
+   294
+  ],
+  [
+   1599,
+   205,
+   294
+  ],
+  [
+   1860,
+   205,
+   294
+  ]
+ ]
+}
